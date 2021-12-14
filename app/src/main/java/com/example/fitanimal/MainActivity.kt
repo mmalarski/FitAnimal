@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
+import android.widget.ImageButton
 
 const val EXTRA_MESSAGE = "com.example.fitanimal.MESSAGE"
 
@@ -24,5 +25,11 @@ class MainActivity : AppCompatActivity() {
         }
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+    }
+
+    fun goToSettings(view: View) {
+
+        val intentSettings = Intent(this, SettingsActivity::class.java)
+        startActivity(intentSettings);
     }
 }
