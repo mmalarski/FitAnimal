@@ -16,7 +16,7 @@ public class SlideAdapter extends PagerAdapter {
     LayoutInflater inflater;
 
     public int[] list_images ={
-        R.drawable.obraz2, R.drawable.obraz1
+        R.drawable.left, R.drawable.right
     };
 
     public SlideAdapter (Context context) {
@@ -33,12 +33,12 @@ public class SlideAdapter extends PagerAdapter {
         return (view == (LinearLayout)object);
     }
 
+    @NonNull
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
        inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
        View view = inflater.inflate(R.layout.slide, container, false);
-       LinearLayout layoutslide = view.findViewById(R.id.slideLinearlayout);
-       ImageView imgslide = (ImageView) view.findViewById(R.id.slideimg);
+       ImageView imgslide = view.findViewById(R.id.slideimg);
        imgslide.setImageResource(list_images[position]);
        container.addView(view);
        return view;

@@ -6,41 +6,41 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-<!--    <EditText-->
-<!--        android:id="@+id/editTextTextPersonName"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="16dp"-->
-<!--        android:layout_marginTop="16dp"-->
-<!--        android:ems="10"-->
-<!--        android:enabled="false"-->
-<!--        android:hint="@string/edit_message"-->
-<!--        android:inputType="textPersonName"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/imageButton" />-->
+    <!--    <EditText-->
+    <!--        android:id="@+id/editTextTextPersonName"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="16dp"-->
+    <!--        android:layout_marginTop="16dp"-->
+    <!--        android:ems="10"-->
+    <!--        android:enabled="false"-->
+    <!--        android:hint="@string/edit_message"-->
+    <!--        android:inputType="textPersonName"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/imageButton" />-->
 
     <!--    <EditText-->
-<!--        android:id="@+id/editTextTextPersonName2"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:layout_marginStart="16dp"-->
-<!--        android:layout_marginTop="16dp"-->
-<!--        android:layout_marginEnd="16dp"-->
-<!--        android:layout_marginBottom="16dp"-->
-<!--        android:ems="10"-->
-<!--        android:enabled="false"-->
-<!--        android:inputType="textPersonName"-->
-<!--        android:isScrollContainer="false"-->
-<!--        android:text="24,567"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/imageButton"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
+    <!--        android:id="@+id/editTextTextPersonName2"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="0dp"-->
+    <!--        android:layout_marginStart="16dp"-->
+    <!--        android:layout_marginTop="16dp"-->
+    <!--        android:layout_marginEnd="16dp"-->
+    <!--        android:layout_marginBottom="16dp"-->
+    <!--        android:ems="10"-->
+    <!--        android:enabled="false"-->
+    <!--        android:inputType="textPersonName"-->
+    <!--        android:isScrollContainer="false"-->
+    <!--        android:text="24,567"-->
+    <!--        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName"-->
+    <!--        app:layout_constraintEnd_toStartOf="@+id/imageButton"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent" />-->
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -55,7 +55,7 @@
         android:id="@+id/imageButton"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="128dp"
         android:background="#00FFFFFF"
         android:onClick="goToSettings"
