@@ -19,19 +19,21 @@ private const val CAMERA_REQUEST_CODE = 101
 class SharingActivity : AppCompatActivity() {
 
     private lateinit var codeScanner: CodeScanner
-    private var textView = findViewById<TextView>(R.id.textView2)
-    private var scanner_view = findViewById<CodeScannerView>(R.id.scanner_view)
+    private lateinit var textView: TextView
+    private lateinit var scanner_view: CodeScannerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sharing)
+        textView = findViewById<TextView>(R.id.textView2)
+        scanner_view = findViewById<CodeScannerView>(R.id.scanner_view)
 
         setupPermission()
         codeScanner()
     }
 
     private fun codeScanner() {
-        codeScanner = CodeScanner(this, findViewById(R.id.scanner_view))
+        codeScanner = CodeScanner(this, scanner_view)
         codeScanner.apply {
             camera = CodeScanner.CAMERA_BACK
             formats = CodeScanner.ALL_FORMATS
