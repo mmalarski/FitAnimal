@@ -5,6 +5,7 @@
     <string name="another_textfield">Another Text Field</string>
     <string name="another_button">Another Send</string>
     <string name="title_activity_settings">SettingsActivity</string>
+    <string name="share_workout_button">Workout with a friend</string>
 
     <!-- Preference Titles -->
     <string name="messages_header">Messages</string>

@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 
     fun goToSettings(view: View) {
 
-        val intentSettings = Intent(this, SettingsActivity::class.java)
+        val intentSettings = Intent(this, SettingActivity::class.java)
         startActivity(intentSettings);
     }
 }
