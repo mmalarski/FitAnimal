@@ -10,16 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView"
-            app:layout_constraintEnd_toEndOf="@+id/imageView"
-            app:layout_constraintStart_toStartOf="@+id/imageView"
-            app:layout_constraintTop_toTopOf="@+id/imageView" />
-
         <com.budiyev.android.codescanner.CodeScannerView
             android:id="@+id/scanner_view"
             android:layout_width="match_parent"
@@ -48,6 +38,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/scanner_view"
             app:srcCompat="@drawable/ic_baseline_qr_code_24" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="@+id/imageView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

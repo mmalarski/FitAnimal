@@ -9,7 +9,7 @@
     <ImageView
         android:id="@+id/slideimg"
         android:layout_width="411dp"
-        android:layout_height="731dp"></ImageView>
+        android:layout_height="731dp"/>
 
 
 </LinearLayout>
