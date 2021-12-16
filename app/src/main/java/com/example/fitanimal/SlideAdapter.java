@@ -16,7 +16,7 @@ public class SlideAdapter extends PagerAdapter {
     LayoutInflater inflater;
 
     public int[] list_images ={
-        R.drawable.left, R.drawable.right
+            R.drawable.left, R.drawable.right
     };
 
     public SlideAdapter (Context context) {
@@ -36,17 +36,17 @@ public class SlideAdapter extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-       inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
-       View view = inflater.inflate(R.layout.slide, container, false);
-       ImageView imgslide = view.findViewById(R.id.slideimg);
-       imgslide.setImageResource(list_images[position]);
-       container.addView(view);
-       return view;
+        inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.slide, container, false);
+        ImageView imgslide = view.findViewById(R.id.slideimg);
+        imgslide.setImageResource(list_images[position]);
+        container.addView(view);
+        return view;
     }
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-       container.removeView((LinearLayout) object);
+        container.removeView((LinearLayout) object);
     }
 
 }

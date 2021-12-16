@@ -41,4 +41,9 @@ class MainActivity : AppCompatActivity() {
         val intentSettings = Intent(this, SettingActivity::class.java)
         startActivity(intentSettings);
     }
+
+    fun openWardrobe(view: View) {
+        val intentWardrobe = Intent(this, WardrobePopup::class.java)
+        startActivity(intentWardrobe)
+    }
 }
