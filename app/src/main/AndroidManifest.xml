@@ -16,14 +16,17 @@
         <activity
             android:name=".SettingActivity"
             android:parentActivityName=".MainActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".SharingActivity"
             android:parentActivityName=".SettingActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".MainActivity"
-            android:exported="true" >
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,6 +37,7 @@
             android:name=".WardrobePopup"
             android:parentActivityName=".MainActivity"
             android:theme = "@style/Theme.FitAnimal.Pop"
+            android:screenOrientation="portrait"
              />
     </application>
 </manifest>
