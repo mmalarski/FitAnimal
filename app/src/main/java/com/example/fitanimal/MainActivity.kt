@@ -43,11 +43,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun openWardrobe(view: View) {
-        val intentWardrobe = Intent(this, WardrobePopup::class.java)
-        startActivity(intentWardrobe)
+            val intentWardrobe = Intent(this, WardrobePopup::class.java)
+            startActivity(intentWardrobe)
+
     }
 
-    //TODO: przycisk z miską na lewym ekranie do stworzenia
     fun openFoodBowl(view : View) {
         val intentFood = Intent(this, FoodPopup::class.java)
         startActivity(intentFood)

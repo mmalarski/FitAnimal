@@ -51,16 +51,7 @@
 
     </androidx.viewpager.widget.ViewPager>
 
-    <Button
-        android:id="@+id/wardrobe"
-        android:layout_width="183dp"
-        android:layout_height="287dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="120dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@android:color/transparent"
-        android:onClick="openWardrobe"/>
+
 
     <ImageButton
         android:id="@+id/imageButton"
