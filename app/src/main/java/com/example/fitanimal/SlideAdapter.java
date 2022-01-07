@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -24,6 +25,10 @@ public class SlideAdapter extends PagerAdapter {
 
     public int[]  buttons={
            R.id.wardrobe, R.id.food
+    };
+
+    public boolean[]  flags={
+            true, false
     };
 
     public SlideAdapter (Context context) {
@@ -50,6 +55,11 @@ public class SlideAdapter extends PagerAdapter {
         imgslide.setImageResource(list_images[position]);
         Button resetButton=(Button)view.findViewById(buttons[position]);
         resetButton.setVisibility(View.VISIBLE);
+        if(!flags[position])
+        {
+           //TextView tv=(TextView) view.findViewById(R.id.tv_stepsTaken);
+            //tv.setVisibility(View.VISIBLE);
+        }
         container.addView(view);
         return view;
     }
