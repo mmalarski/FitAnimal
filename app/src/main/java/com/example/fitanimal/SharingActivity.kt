@@ -1,20 +1,18 @@
 package com.example.fitanimal
 
 import android.annotation.SuppressLint
+import android.bluetooth.BluetoothAdapter
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Layout
 import android.util.Log
-import android.view.View
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.FragmentActivity
 import com.budiyev.android.codescanner.*
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
@@ -36,8 +34,8 @@ class SharingActivity : AppCompatActivity() {
     private lateinit var multiFormatWriter: MultiFormatWriter
     private lateinit var barcodeEncoder: BarcodeEncoder
 
+    @SuppressLint("LongLogTag", "HardwareIds")
     override fun onCreate(savedInstanceState: Bundle?) {
-        val text = "sample text"
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sharing)
         textView = findViewById<TextView>(R.id.textView2)
@@ -47,7 +45,7 @@ class SharingActivity : AppCompatActivity() {
         val multiFormatWriter = MultiFormatWriter()
         try {
             val bitMatrix = multiFormatWriter.encode(
-                text,
+                "ja wale",
                 BarcodeFormat.QR_CODE,
                 500,
                 500
@@ -58,7 +56,6 @@ class SharingActivity : AppCompatActivity() {
         } catch (e: Exception) {
             e.printStackTrace()
         }
-
         setupPermission()
         codeScanner()
     }
@@ -76,7 +73,8 @@ class SharingActivity : AppCompatActivity() {
 
             decodeCallback = DecodeCallback {
                 runOnUiThread {
-                    textView.text = it.text
+//                    textView.text = it.text
+//                    bluetooth.connectDevice(it.text, true)
                 }
             }
 

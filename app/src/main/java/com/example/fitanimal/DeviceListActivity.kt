@@ -1,6 +1,5 @@
 package com.example.fitanimal
 
-import android.R
 
 import android.bluetooth.BluetoothAdapter
 
@@ -79,22 +78,24 @@ class DeviceListActivity : Activity() {
         mBtAdapter = BluetoothAdapter.getDefaultAdapter()
 
         // Get a set of currently paired devices
-        val pairedDevices = mBtAdapter.getBondedDevices()
+        val pairedDevices = mBtAdapter?.bondedDevices
 
         // If there are paired devices, add each one to the ArrayAdapter
-        if (pairedDevices.size > 0) {
-            findViewById<View>(R.id.title_paired_devices).visibility = View.VISIBLE
-            for (device in pairedDevices) {
-                pairedDevicesArrayAdapter.add(
-                    """
-                        ${device.name}
-                        ${device.address}
-                        """.trimIndent()
-                )
+        if (pairedDevices != null) {
+            if (pairedDevices.size > 0) {
+                findViewById<View>(R.id.title_paired_devices).visibility = View.VISIBLE
+                for (device in pairedDevices) {
+                    pairedDevicesArrayAdapter.add(
+                        """
+                            ${device.name}
+                            ${device.address}
+                            """.trimIndent()
+                    )
+                }
+            } else {
+                val noDevices = resources.getText(R.string.none_paired).toString()
+                pairedDevicesArrayAdapter.add(noDevices)
             }
-        } else {
-            val noDevices = resources.getText(R.string.none_paired).toString()
-            pairedDevicesArrayAdapter.add(noDevices)
         }
     }
 

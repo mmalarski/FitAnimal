@@ -223,34 +223,34 @@ class BluetoothFragment : Fragment() {
         }
     }
 
-    fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
-        when (requestCode) {
-            REQUEST_CONNECT_DEVICE_SECURE ->                 // When DeviceListActivity returns with a device to connect
-                if (resultCode == Activity.RESULT_OK) {
-                    connectDevice(data, true)
-                }
-            REQUEST_CONNECT_DEVICE_INSECURE ->                 // When DeviceListActivity returns with a device to connect
-                if (resultCode == Activity.RESULT_OK) {
-                    connectDevice(data, false)
-                }
-            REQUEST_ENABLE_BT ->                 // When the request to enable Bluetooth returns
-                if (resultCode == Activity.RESULT_OK) {
-                    // Bluetooth is now enabled, so set up a chat session
-                    setupChat()
-                } else {
-                    // User did not enable Bluetooth or an error occurred
-                    Log.d(TAG, "BT not enabled")
-                    val activity = activity
-                    if (activity != null) {
-                        Toast.makeText(
-                            activity, R.string.bt_not_enabled_leaving,
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        activity.finish()
-                    }
-                }
-        }
-    }
+//    fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+//        when (requestCode) {
+//            REQUEST_CONNECT_DEVICE_SECURE ->                 // When DeviceListActivity returns with a device to connect
+//                if (resultCode == Activity.RESULT_OK) {
+//                    connectDevice(data, true)
+//                }
+//            REQUEST_CONNECT_DEVICE_INSECURE ->                 // When DeviceListActivity returns with a device to connect
+//                if (resultCode == Activity.RESULT_OK) {
+//                    connectDevice(data, false)
+//                }
+//            REQUEST_ENABLE_BT ->                 // When the request to enable Bluetooth returns
+//                if (resultCode == Activity.RESULT_OK) {
+//                    // Bluetooth is now enabled, so set up a chat session
+//                    setupChat()
+//                } else {
+//                    // User did not enable Bluetooth or an error occurred
+//                    Log.d(TAG, "BT not enabled")
+//                    val activity = activity
+//                    if (activity != null) {
+//                        Toast.makeText(
+//                            activity, R.string.bt_not_enabled_leaving,
+//                            Toast.LENGTH_SHORT
+//                        ).show()
+//                        activity.finish()
+//                    }
+//                }
+//        }
+//    }
 
     /**
      * Establish connection with other device
