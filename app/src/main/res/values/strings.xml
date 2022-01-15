@@ -40,12 +40,10 @@
     <string name="title_not_connected">not connected</string>
     <string name="exchange_resources">Exchange resources with a friend</string>
 
-    <!-- Options Menu -->
-    <string name="secure_connect">Connect a device - Secure</string>
-    <string name="insecure_connect">Connect a device - Insecure</string>
-    <string name="discoverable">Make discoverable</string>
-
     <string name="sample_show_log">Show Log</string>
     <string name="sample_hide_log">Hide Log</string>
+    <string name="connect_secure_bt">Connect a device (secure)</string>
+    <string name="connect_insecure_bt">Connect a device (insecure)</string>
+    <string name="make_discoverable">Make discoverable</string>
 </resources>
 
