@@ -12,10 +12,11 @@ import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
 import android.os.Message
+import androidx.fragment.app.FragmentActivity
 import java.util.*
 
 
-open class BluetoothService {
+open class BluetoothService(activity: FragmentActivity, mHandler: Handler) {
 
     // Debugging
     private val TAG = "BluetoothChatService"
@@ -49,13 +50,15 @@ open class BluetoothService {
         val STATE_CONNECTED = 3 // now connected to a remote device
     }
 
+    var companion = Companion
+
 
     /**
      * This thread runs while listening for incoming connections. It behaves
      * like a server-side client. It runs until a connection is accepted
      * (or until cancelled).
      */
-     public fun BluetoothService(context: Context?, handler: Handler) {
+    fun BluetoothService(context: Context?, handler: Handler) {
         mAdapter = BluetoothAdapter.getDefaultAdapter()
         mState = STATE_NONE
         mNewState = mState
@@ -234,6 +237,7 @@ open class BluetoothService {
         // Start the service over to restart listening mode
         this@BluetoothService.start()
     }
+
 
 
     private inner class AcceptThread(secure: Boolean) : Thread() {

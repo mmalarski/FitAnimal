@@ -6,21 +6,11 @@ import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import android.R
 import android.annotation.SuppressLint
-import android.app.ActionBar
 import android.util.Log
 
-import android.widget.TextView
-
-import androidx.fragment.app.FragmentActivity
-import android.view.MenuInflater
-
-import androidx.annotation.NonNull
-
-import android.bluetooth.BluetoothDevice
-
 import android.app.Activity
+import android.os.Build
 import android.os.Handler
 import android.os.Message
 import android.view.KeyEvent
@@ -132,7 +122,7 @@ class BluetoothFragment : Fragment() {
      */
     private fun sendMessage(message: String) {
         // Check that we're actually connected before trying anything
-        if (mService?.getState() ?:  !== BluetoothService.STATE_CONNECTED) {
+        if (mService?.getState()  != mService?.companion?.STATE_CONNECTED) {
             //Toast.makeText(activity, R.string.not_connected, Toast.LENGTH_SHORT).show()
             return
         }
@@ -268,8 +258,9 @@ class BluetoothFragment : Fragment() {
      * @param data   An [Intent] with [DeviceListActivity.EXTRA_DEVICE_ADDRESS] extra.
      * @param secure Socket Security type - Secure (true) , Insecure (false)
      */
+
     private fun connectDevice(data: Intent, secure: Boolean) {
-        // Get the device MAC address
+        // Get the device MAC addressDeviceListActivity
         val extras = data.extras ?: return
         val address = extras.getString(DeviceListActivity.EXTRA_DEVICE_ADDRESS)
         // Get the BluetoothDevice object
