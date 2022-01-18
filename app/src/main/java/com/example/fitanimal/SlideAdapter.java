@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -53,8 +54,18 @@ public class SlideAdapter extends PagerAdapter {
         View view = inflater.inflate(R.layout.slide, container, false);
         ImageView imgslide = view.findViewById(R.id.slideimg);
         imgslide.setImageResource(list_images[position]);
-        Button resetButton=(Button)view.findViewById(buttons[position]);
-        resetButton.setVisibility(View.VISIBLE);
+
+        Button resetButton=(Button)view.findViewById(buttons[0]);
+        ImageButton resetImageButton=(ImageButton)view.findViewById(buttons[1]);
+
+        if(position == 0) {
+            resetButton.setVisibility(View.VISIBLE);
+            resetImageButton.setVisibility(View.INVISIBLE);
+        } else {
+            resetButton.setVisibility(View.INVISIBLE);
+            resetImageButton.setVisibility(View.VISIBLE);
+        }
+
         if(!flags[position])
         {
            //TextView tv=(TextView) view.findViewById(R.id.tv_stepsTaken);
