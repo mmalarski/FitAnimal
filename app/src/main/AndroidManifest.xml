@@ -78,6 +78,11 @@
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.FitAnimal.Pop" />
+        <activity
+            android:name=".FoodPopup"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.FitAnimal.Pop" />
     </application>
 
 </manifest>

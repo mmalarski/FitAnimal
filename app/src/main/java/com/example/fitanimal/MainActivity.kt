@@ -159,14 +159,15 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         startActivity(intentSettings);
     }
 
-    fun openWardrobe(view: View) {
-            val intentWardrobe = Intent(this, WardrobePopup::class.java)
-            startActivity(intentWardrobe)
-
-    }
-
     fun openFoodBowl(view : View) {
         val intentFood = Intent(this, FoodPopup::class.java)
         startActivity(intentFood)
     }
+
+    fun openWardrobe(view: View) {
+            val intentWardrobe = Intent(this, WardrobePopup::class.java)
+            startActivity(intentWardrobe)
+    }
+
+
 }
