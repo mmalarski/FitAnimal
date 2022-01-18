@@ -1,14 +1,16 @@
 package com.example.fitanimal
 
-import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.viewpager.widget.ViewPager
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
@@ -17,7 +19,6 @@ import android.os.Build
 import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
-import android.view.LayoutInflater
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 
@@ -187,10 +188,20 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     }
 
     private fun sendNotification() {
+        val intent = Intent(this, MainActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+
+        val pendingIntent : PendingIntent = PendingIntent.getActivity(this, 0, intent, 0)
+
+        val bitmapLargeIcon : Bitmap = BitmapFactory.decodeResource(applicationContext.resources, R.drawable.icon_notif)
+
         val builder = NotificationCompat.Builder(this, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_launcher_foreground)
             .setContentTitle("Example Title")
             .setContentText("Example Description")
+            .setLargeIcon(bitmapLargeIcon)
+            .setContentIntent(pendingIntent)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 
         with(NotificationManagerCompat.from(this)) {
