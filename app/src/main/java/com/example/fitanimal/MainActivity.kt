@@ -58,10 +58,15 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         // Adding a context of SENSOR_SERVICE aas Sensor Manager
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
 
-
         createNotificationChannel()
 
     }
+
+    override fun onPause() {
+        super.onPause()
+        sendNotification()
+    }
+
     override fun onResume() {
         super.onResume()
         running = true
@@ -198,8 +203,8 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
         val builder = NotificationCompat.Builder(this, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_launcher_foreground)
-            .setContentTitle("Example Title")
-            .setContentText("Example Description")
+            .setContentTitle("Come back to me!")
+            .setContentText("Your pet misses you")
             .setLargeIcon(bitmapLargeIcon)
             .setContentIntent(pendingIntent)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
@@ -217,9 +222,6 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     }
 
     fun openWardrobe(view: View) {
-
-        sendNotification()
-
         val intentWardrobe = Intent(this, WardrobePopup::class.java)
         startActivity(intentWardrobe)
     }
