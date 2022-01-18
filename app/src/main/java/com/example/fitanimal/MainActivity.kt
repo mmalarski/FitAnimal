@@ -1,5 +1,8 @@
 package com.example.fitanimal
 
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,12 +13,13 @@ import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
+import android.os.Build
 import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
 import android.view.LayoutInflater
-
-
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 
 
 const val EXTRA_MESSAGE = "com.example.fitanimal.MESSAGE"
@@ -38,6 +42,9 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     // steps and it has also been given the value of 0 float
     private var previousTotalSteps = 0f
 
+    private val CHANNEL_ID = "channel_id_notif"
+    private val notificationID = 101
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -49,6 +56,10 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
         // Adding a context of SENSOR_SERVICE aas Sensor Manager
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
+
+
+        createNotificationChannel()
+
     }
     override fun onResume() {
         super.onResume()
@@ -153,21 +164,52 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 //        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
 //    }
 
+
+    //setting activity
     fun goToSettings(view: View) {
 
         val intentSettings = Intent(this, SettingActivity::class.java)
         startActivity(intentSettings);
     }
 
+    //notifications
+    private fun createNotificationChannel() {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val name = "Notification Title"
+            val descriptionText = "Notif desc"
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
+                description = descriptionText;
+            }
+            val notificationManager : NotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
+    }
+
+    private fun sendNotification() {
+        val builder = NotificationCompat.Builder(this, CHANNEL_ID)
+            .setSmallIcon(R.drawable.ic_launcher_foreground)
+            .setContentTitle("Example Title")
+            .setContentText("Example Description")
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+
+        with(NotificationManagerCompat.from(this)) {
+            notify(notificationID, builder.build())
+        }
+    }
+
+
+    //pop up windows for food bowl & wardrobe
     fun openFoodBowl(view : View) {
         val intentFood = Intent(this, FoodPopup::class.java)
         startActivity(intentFood)
     }
 
     fun openWardrobe(view: View) {
-            val intentWardrobe = Intent(this, WardrobePopup::class.java)
-            startActivity(intentWardrobe)
+
+        sendNotification()
+
+        val intentWardrobe = Intent(this, WardrobePopup::class.java)
+        startActivity(intentWardrobe)
     }
-
-
 }
