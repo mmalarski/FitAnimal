@@ -27,8 +27,8 @@ const val EXTRA_MESSAGE = "com.example.fitanimal.MESSAGE"
 
 class MainActivity : AppCompatActivity(), SensorEventListener {
 
-    private lateinit var viewPager: ViewPager;
-    private lateinit var myadapter: SlideAdapter;
+    private lateinit var viewPager: ViewPager
+    private lateinit var myadapter: SlideAdapter
     // we have assigned sensorManger to nullable
     private var sensorManager: SensorManager? = null
     // Creating a variable which will give the running status
@@ -43,15 +43,17 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     // steps and it has also been given the value of 0 float
     private var previousTotalSteps = 0f
 
+    //notification variables
     private val CHANNEL_ID = "channel_id_notif"
     private val notificationID = 101
+    private var canBeClosed = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        viewPager = findViewById(R.id.viewpager);
-        myadapter = SlideAdapter(this);
-        viewPager.adapter = myadapter;
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        viewPager = findViewById(R.id.viewpager)
+        myadapter = SlideAdapter(this)
+        viewPager.adapter = myadapter
         loadData()
         resetSteps()
 
@@ -64,8 +66,10 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
     override fun onPause() {
         super.onPause()
-        sendNotification()
+        if(canBeClosed)
+            sendNotification()
     }
+
 
     override fun onResume() {
         super.onResume()
@@ -84,6 +88,8 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
             // Rate suitable for the user interface
             sensorManager?.registerListener(this, stepSensor, SensorManager.SENSOR_DELAY_UI)
         }
+
+        canBeClosed = true
     }
 
     override fun onSensorChanged(event: SensorEvent?) {
@@ -173,6 +179,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
     //setting activity
     fun goToSettings(view: View) {
+        canBeClosed = false
 
         val intentSettings = Intent(this, SettingActivity::class.java)
         startActivity(intentSettings);
@@ -217,11 +224,13 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
     //pop up windows for food bowl & wardrobe
     fun openFoodBowl(view : View) {
+        canBeClosed = false
         val intentFood = Intent(this, FoodPopup::class.java)
         startActivity(intentFood)
     }
 
     fun openWardrobe(view: View) {
+        canBeClosed = false
         val intentWardrobe = Intent(this, WardrobePopup::class.java)
         startActivity(intentWardrobe)
     }
