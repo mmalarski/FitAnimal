@@ -24,6 +24,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import java.util.*
 import kotlin.properties.Delegates
 
 
@@ -52,6 +53,9 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     private val notificationID = 101
     private var sendNotif = true
 
+    private var lastTime by Delegates.notNull<Long>()
+    private var deltaTime = 0
+
     public var hungerLevel by Delegates.notNull<Int>()
     public var energyLevel by Delegates.notNull<Int>()
     public var moodLevel by Delegates.notNull<Int>()
@@ -64,16 +68,23 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         myadapter = SlideAdapter(this)
         viewPager.adapter = myadapter
         viewPager.setCurrentItem(1);
+        val currentTime: Long = Calendar.getInstance().timeInMillis
+        lastTime = 0
         loadData()
         resetSteps()
-
+        deltaTime = if (lastTime != 0.toLong()) {
+            ((currentTime - lastTime) / 1000).toInt()
+        } else {
+            0
+        }
+        Log.d("MainDelta", "$deltaTime")
         // Adding a context of SENSOR_SERVICE aas Sensor Manager
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
 
         createNotificationChannel()
         loadData()
 
-        findViewById<ProgressBar>(R.id.hungerBar).progress = hungerLevel
+        findViewById<ProgressBar>(R.id.hungerBar).progress = hungerLevel - deltaTime
         findViewById<ProgressBar>(R.id.energyBar).progress = energyLevel
         findViewById<ProgressBar>(R.id.moodBar).progress = moodLevel
 
@@ -114,12 +125,23 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         if(sendNotif)
             sendNotification()
         if (hungerLevel > 5) {
-            hungerLevel -= 5
+            hungerLevel = 95
         } else {
-            hungerLevel = 0
+            hungerLevel = 95
         }
         findViewById<ProgressBar>(R.id.hungerBar).progress = hungerLevel
         saveData()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        val currTime: Long = Calendar.getInstance().timeInMillis
+        val sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+
+        val editor = sharedPreferences.edit()
+        editor.putLong("stopTime", currTime)
+        editor.apply()
+        Log.d("MainStop", "$currTime")
     }
 
     override fun onResume() {
@@ -141,6 +163,31 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         }
 
         sendNotif = true
+
+        val sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+        val savedTime = sharedPreferences.getLong("stopTime", 0)
+        lastTime = savedTime
+        val currentTime: Long = Calendar.getInstance().timeInMillis
+        deltaTime = if (lastTime !=0.toLong()) {
+            ((currentTime - lastTime) / 1000).toInt()
+        } else {
+            0
+        }
+        Log.d("Mainstop", "$lastTime")
+        Log.d("Maincurrent", "$currentTime")
+        Log.d("MainDelta", "$deltaTime")
+        //findViewById<ProgressBar>(R.id.hungerBar).progress = hungerLevel - deltaTime
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        val currTime: Long = Calendar.getInstance().timeInMillis
+        val sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+
+        val editor = sharedPreferences.edit()
+        editor.putLong("stopTime", currTime)
+        editor.apply()
+
     }
 
     override fun onSensorChanged(event: SensorEvent?) {
@@ -185,6 +232,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
             true
         }
+       // hungerLevel = 95
     }
 
     private fun saveData() {
@@ -210,6 +258,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         val savedHunger = sharedPreferences.getInt("hungerLevel", 95)
         val savedEnergy = sharedPreferences.getInt("energyLevel", 95)
         val savedMood = sharedPreferences.getInt("moodLevel", 95)
+        val savedTime = sharedPreferences.getLong("stopTime", 0)
         // Log.d is used for debugging purposes
         Log.d("MainActivity", "$savedNumber")
 
@@ -217,6 +266,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         hungerLevel = savedHunger
         moodLevel = savedMood
         energyLevel = savedEnergy
+        lastTime = savedTime
     }
 
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
