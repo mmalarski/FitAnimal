@@ -114,7 +114,6 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         saveData()
     }
 
-
     override fun onResume() {
         super.onResume()
         running = true
