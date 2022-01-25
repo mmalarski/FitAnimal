@@ -1,5 +1,6 @@
 package com.example.fitanimal
 
+import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -9,6 +10,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.viewpager.widget.ViewPager
 import android.content.Context
+import android.content.res.ColorStateList
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.hardware.Sensor
@@ -17,10 +19,12 @@ import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Build
 import android.util.Log
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import kotlin.properties.Delegates
 
 
 const val EXTRA_MESSAGE = "com.example.fitanimal.MESSAGE"
@@ -48,12 +52,18 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     private val notificationID = 101
     private var sendNotif = true
 
+    public var hungerLevel by Delegates.notNull<Int>()
+    public var energyLevel by Delegates.notNull<Int>()
+    public var moodLevel by Delegates.notNull<Int>()
+
+    @SuppressLint("CutPasteId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         viewPager = findViewById(R.id.viewpager)
         myadapter = SlideAdapter(this)
         viewPager.adapter = myadapter
+        viewPager.setCurrentItem(1);
         loadData()
         resetSteps()
 
@@ -61,13 +71,47 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
 
         createNotificationChannel()
+        loadData()
 
+        findViewById<ProgressBar>(R.id.hungerBar).progressTintList = ColorStateList.valueOf(
+            resources.getColor(R.color.fullBar))
+        findViewById<ProgressBar>(R.id.energyBar).progressTintList = ColorStateList.valueOf(
+            resources.getColor(R.color.fullBar))
+        findViewById<ProgressBar>(R.id.moodBar).progressTintList = ColorStateList.valueOf(
+            resources.getColor(R.color.fullBar))
+        if(hungerLevel < 70) {
+            findViewById<ProgressBar>(R.id.hungerBar).progressTintList = ColorStateList.valueOf(
+                resources.getColor(R.color.mediumBar))
+        }
+        if(energyLevel < 70) {
+            findViewById<ProgressBar>(R.id.energyBar).progressTintList = ColorStateList.valueOf(
+                resources.getColor(R.color.mediumBar))
+        }
+        if(moodLevel < 70) {
+            findViewById<ProgressBar>(R.id.moodBar).progressTintList = ColorStateList.valueOf(
+                resources.getColor(R.color.mediumBar))
+        }
+        if(hungerLevel < 30) {
+            findViewById<ProgressBar>(R.id.hungerBar).progressTintList = ColorStateList.valueOf(
+                resources.getColor(R.color.lowBar))
+        }
+        if(energyLevel < 30) {
+            findViewById<ProgressBar>(R.id.energyBar).progressTintList = ColorStateList.valueOf(
+                resources.getColor(R.color.lowBar))
+        }
+        if(moodLevel < 30) {
+            findViewById<ProgressBar>(R.id.moodBar).progressTintList = ColorStateList.valueOf(
+                resources.getColor(R.color.lowBar))
+        }
     }
 
     override fun onPause() {
         super.onPause()
         if(sendNotif)
             sendNotification()
+        hungerLevel -= 5
+        findViewById<ProgressBar>(R.id.hungerBar).progress = hungerLevel
+        saveData()
     }
 
 
@@ -145,6 +189,9 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
         val editor = sharedPreferences.edit()
         editor.putFloat("key1", previousTotalSteps)
+        editor.putInt("hungerLevel", hungerLevel)
+        editor.putInt("energyLevel", energyLevel)
+        editor.putInt("moodLevel  ", moodLevel)
         editor.apply()
     }
 
@@ -153,11 +200,16 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         // In this function we will retrieve data
         val sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
         val savedNumber = sharedPreferences.getFloat("key1", 0f)
-
+        val savedHunger = sharedPreferences.getInt("hungerLevel", 95)
+        val savedEnergy = sharedPreferences.getInt("energyLevel", 95)
+        val savedMood = sharedPreferences.getInt("moodLevel", 95)
         // Log.d is used for debugging purposes
         Log.d("MainActivity", "$savedNumber")
 
         previousTotalSteps = savedNumber
+        hungerLevel = savedHunger
+        moodLevel = savedMood
+        energyLevel = savedEnergy
     }
 
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
@@ -233,5 +285,12 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         sendNotif = false
         val intentWardrobe = Intent(this, WardrobePopup::class.java)
         startActivity(intentWardrobe)
+    }
+
+    override fun onSaveInstanceState(savedInstanceState: Bundle) {
+        super.onSaveInstanceState(savedInstanceState)
+        savedInstanceState.putInt("hungerLevel", hungerLevel)
+        savedInstanceState.putInt("energyLevel", energyLevel)
+        savedInstanceState.putInt("moodLevel  ", moodLevel)
     }
 }

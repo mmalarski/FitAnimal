@@ -224,50 +224,19 @@ class BluetoothFragment : Fragment() {
         }
     }
 
-    var resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        when (result.resultCode) {
-            REQUEST_CONNECT_DEVICE_SECURE ->                 // When DeviceListActivity returns with a device to connect
-                if (result.resultCode == Activity.RESULT_OK) {
-                    val data: Intent? = result.data
-                    if (data != null) {
-                        connectDevice(data, true)
-                    }
-                }
-            REQUEST_CONNECT_DEVICE_INSECURE ->                 // When DeviceListActivity returns with a device to connect
-                if (result.resultCode == Activity.RESULT_OK) {
-                    val data: Intent? = result.data
-                    if (data != null) {
-                        connectDevice(data, true)
-                    }
-                }
-            REQUEST_ENABLE_BT ->                 // When the request to enable Bluetooth returns
-                if (result.resultCode == Activity.RESULT_OK) {
-                    // Bluetooth is now enabled, so set up a chat session
-                    setupChat()
-                } else {
-                    // User did not enable Bluetooth or an error occurred
-                    Log.d(TAG, "BT not enabled")
-                    val activity = activity
-                    if (activity != null) {
-                        Toast.makeText(
-                            activity, R.string.bt_not_enabled_leaving,
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        activity.finish()
-                    }
-                }
-        }
-    }
-//
-//    fun onActivityResult(private var requestCode: Int, private var resultCode: Int, private var data: Intent) {
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 //        when (requestCode) {
 //            REQUEST_CONNECT_DEVICE_SECURE ->                 // When DeviceListActivity returns with a device to connect
 //                if (resultCode == Activity.RESULT_OK) {
-//                    connectDevice(data, true)
+//                    if (data != null) {
+//                        connectDevice(data, true)
+//                    }
 //                }
 //            REQUEST_CONNECT_DEVICE_INSECURE ->                 // When DeviceListActivity returns with a device to connect
 //                if (resultCode == Activity.RESULT_OK) {
-//                    connectDevice(data, false)
+//                    if (data != null) {
+//                        connectDevice(data, false)
+//                    }
 //                }
 //            REQUEST_ENABLE_BT ->                 // When the request to enable Bluetooth returns
 //                if (resultCode == Activity.RESULT_OK) {
@@ -295,7 +264,7 @@ class BluetoothFragment : Fragment() {
      * @param secure Socket Security type - Secure (true) , Insecure (false)
      */
 
-    private fun connectDevice(data: Intent, secure: Boolean) {
+    fun connectDevice(data: Intent, secure: Boolean) {
         // Get the device MAC addressDeviceListActivity
         val extras = data.extras ?: return
         val address = extras.getString(DeviceListActivity.EXTRA_DEVICE_ADDRESS)

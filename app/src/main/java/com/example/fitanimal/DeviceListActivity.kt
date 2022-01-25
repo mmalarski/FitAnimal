@@ -138,6 +138,10 @@ class DeviceListActivity : Activity() {
      */
     private val mDeviceClickListener =
         OnItemClickListener { av, v, arg2, arg3 -> // Cancel discovery because it's costly and we're about to connect
+            Log.d("av: ", av.toString())
+            Log.d("v: ", v.toString())
+            Log.d("arg2: ", arg2.toString())
+            Log.d("arg3: ", arg3.toString())
             mBtAdapter!!.cancelDiscovery()
 
             // Get the device MAC address, which is the last 17 chars in the View

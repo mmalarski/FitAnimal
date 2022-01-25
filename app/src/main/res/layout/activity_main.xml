@@ -47,10 +47,8 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
-
-    </androidx.viewpager.widget.ViewPager>
-
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="SpeakableTextPresentCheck"/>
 
 
     <ImageButton
@@ -63,7 +61,8 @@
         android:onClick="goToSettings"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/viewpager"
-        app:srcCompat="@drawable/ic_baseline_settings_24" />
+        app:srcCompat="@drawable/ic_baseline_settings_24"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/tv_stepsTaken"
@@ -82,5 +81,43 @@
         app:layout_constraintTop_toTopOf="parent"
 
         app:layout_constraintVertical_bias="0.120000005" />
+
+    <ProgressBar
+        android:id="@+id/energyBar"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="136dp"
+        android:layout_height="10dp"
+        android:layout_marginTop="90dp"
+        android:layout_marginEnd="-32dp"
+        android:progress="95"
+        android:progressTint="@color/fullBar"
+        android:rotation="-90"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/viewpager" />
+
+    <ProgressBar
+        android:id="@+id/moodBar"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="136dp"
+        android:layout_height="10dp"
+        android:layout_marginTop="90dp"
+        android:progress="95"
+        android:progressTint="@color/fullBar"
+        android:rotation="-90"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/viewpager" />
+
+    <ProgressBar
+        android:id="@+id/hungerBar"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="136dp"
+        android:layout_height="10dp"
+        android:layout_marginTop="90dp"
+        android:layout_marginEnd="32dp"
+        android:progress="95"
+        android:progressTint="@color/fullBar"
+        android:rotation="-90"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/viewpager" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

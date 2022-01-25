@@ -8,9 +8,7 @@ import android.view.MenuInflater
 import android.view.SubMenu
 import android.view.View
 import android.widget.EditText
-import android.widget.PopupMenu
 import android.widget.TextView
-import java.security.AccessController.getContext
 
 class SettingActivity : AppCompatActivity() {
 
@@ -22,12 +20,11 @@ class SettingActivity : AppCompatActivity() {
         textView = findViewById(R.id.textViewChangeUsername)
     }
 
-    //fun goToBt(view: View) {
+    fun goToBluetooth(view: View) {
 
-     //   val p = PopupMenu(this, view)
-     //   val menu: Menu = p.menu
-     //   menuInflater.inflate(R.menu.main ,p.menu)
-    //}
+        val intent = Intent(this, BluetoothScreen::class.java)
+        startActivity(intent);
+    }
 
     fun goToSharing(view: View) {
 
