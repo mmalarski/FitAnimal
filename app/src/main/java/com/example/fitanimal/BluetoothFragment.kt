@@ -223,15 +223,19 @@ class BluetoothFragment : Fragment() {
         }
     }
 
-//    fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 //        when (requestCode) {
 //            REQUEST_CONNECT_DEVICE_SECURE ->                 // When DeviceListActivity returns with a device to connect
 //                if (resultCode == Activity.RESULT_OK) {
-//                    connectDevice(data, true)
+//                    if (data != null) {
+//                        connectDevice(data, true)
+//                    }
 //                }
 //            REQUEST_CONNECT_DEVICE_INSECURE ->                 // When DeviceListActivity returns with a device to connect
 //                if (resultCode == Activity.RESULT_OK) {
-//                    connectDevice(data, false)
+//                    if (data != null) {
+//                        connectDevice(data, false)
+//                    }
 //                }
 //            REQUEST_ENABLE_BT ->                 // When the request to enable Bluetooth returns
 //                if (resultCode == Activity.RESULT_OK) {
@@ -259,7 +263,7 @@ class BluetoothFragment : Fragment() {
      * @param secure Socket Security type - Secure (true) , Insecure (false)
      */
 
-    private fun connectDevice(data: Intent, secure: Boolean) {
+    fun connectDevice(data: Intent, secure: Boolean) {
         // Get the device MAC addressDeviceListActivity
         val extras = data.extras ?: return
         val address = extras.getString(DeviceListActivity.EXTRA_DEVICE_ADDRESS)
