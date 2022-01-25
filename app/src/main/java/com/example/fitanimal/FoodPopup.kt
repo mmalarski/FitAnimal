@@ -15,6 +15,6 @@ class FoodPopup : Activity() {
         val width = dm.widthPixels
         val height = dm.heightPixels
 
-        getWindow().setLayout((width * 0.8).toInt(), (height * 0.6).toInt())
+        window.setLayout((width * 0.8).toInt(), (height * 0.6).toInt())
     }
 }

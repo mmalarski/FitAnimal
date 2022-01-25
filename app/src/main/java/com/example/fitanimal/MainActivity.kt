@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     //notification variables
     private val CHANNEL_ID = "channel_id_notif"
     private val notificationID = 101
-    private var canBeClosed = true
+    private var sendNotif = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
     override fun onPause() {
         super.onPause()
-        if(canBeClosed)
+        if(sendNotif)
             sendNotification()
     }
 
@@ -89,7 +89,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
             sensorManager?.registerListener(this, stepSensor, SensorManager.SENSOR_DELAY_UI)
         }
 
-        canBeClosed = true
+        sendNotif = true
     }
 
     override fun onSensorChanged(event: SensorEvent?) {
@@ -179,7 +179,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
     //setting activity
     fun goToSettings(view: View) {
-        canBeClosed = false
+        sendNotif = false
 
         val intentSettings = Intent(this, SettingActivity::class.java)
         startActivity(intentSettings);
@@ -224,13 +224,13 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
     //pop up windows for food bowl & wardrobe
     fun openFoodBowl(view : View) {
-        canBeClosed = false
+        sendNotif = false
         val intentFood = Intent(this, FoodPopup::class.java)
         startActivity(intentFood)
     }
 
     fun openWardrobe(view: View) {
-        canBeClosed = false
+        sendNotif = false
         val intentWardrobe = Intent(this, WardrobePopup::class.java)
         startActivity(intentWardrobe)
     }
