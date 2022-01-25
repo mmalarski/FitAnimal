@@ -73,10 +73,12 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         loadData()
         resetSteps()
         deltaTime = if (lastTime != 0.toLong()) {
-            ((currentTime - lastTime) / 1000).toInt()
+            ((currentTime - lastTime) / 10000).toInt()
         } else {
             0
         }
+        Log.d("Maincurr", "$currentTime")
+        Log.d("Mainlast", "$lastTime")
         Log.d("MainDelta", "$deltaTime")
         // Adding a context of SENSOR_SERVICE aas Sensor Manager
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
@@ -87,16 +89,37 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
     override fun onPause() {
         super.onPause()
-        if(sendNotif)
-            sendNotification()
-        if (hungerLevel > 5) {
-            hungerLevel -= 5
-        } else {
-            hungerLevel = 0
-        }
-        findViewById<ProgressBar>(R.id.hungerBar).progress = hungerLevel
-        saveData()
-        tweakBars()
+//        if(sendNotif)
+//            sendNotification()
+//        if (hungerLevel > 5) {
+//            hungerLevel -= 5
+//        } else {
+//            hungerLevel = 0
+//        }
+//        findViewById<ProgressBar>(R.id.hungerBar).progress = hungerLevel
+          saveData()
+          tweakBars()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        val currTime: Long = Calendar.getInstance().timeInMillis
+        val sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+
+        val editor = sharedPreferences.edit()
+        editor.putLong("stopTime", currTime)
+        editor.apply()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        val currTime: Long = Calendar.getInstance().timeInMillis
+        val sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+
+        val editor = sharedPreferences.edit()
+        editor.putLong("stopTime", currTime)
+        editor.apply()
+        Log.d("MainStop", "$currTime")
     }
 
     override fun onResume() {
@@ -118,6 +141,25 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         }
 
         sendNotif = true
+        //Log.d("MainHalo", "$deltaTime")
+
+
+
+        val sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+        val savedTime = sharedPreferences.getLong("stopTime", 0)
+        lastTime = savedTime
+        val currentTime: Long = Calendar.getInstance().timeInMillis
+        deltaTime = if (lastTime !=0.toLong()) {
+            ((currentTime - lastTime) / 100000).toInt()
+        } else {
+            0
+        }
+        Log.d("Mainstop", "$lastTime")
+        Log.d("Maincurrent", "$currentTime")
+        Log.d("MainDelta", "$deltaTime")
+        tweakBars()
+
+        //findViewById<ProgressBar>(R.id.hungerBar).progress = hungerLevel - deltaTime
     }
 
     override fun onSensorChanged(event: SensorEvent?) {
@@ -152,7 +194,8 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         tvStepsTaken.setOnLongClickListener {
 
             previousTotalSteps = totalSteps
-
+            findViewById<ProgressBar>(R.id.hungerBar).progress = 95
+            hungerLevel = 95
             // When the user will click long tap on the screen,
             // the steps will be reset to 0
             tvStepsTaken.text = 0.toString()
@@ -162,6 +205,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
             true
         }
+
     }
 
     private fun saveData() {
@@ -187,6 +231,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         val savedHunger = sharedPreferences.getInt("hungerLevel", 95)
         val savedEnergy = sharedPreferences.getInt("energyLevel", 95)
         val savedMood = sharedPreferences.getInt("moodLevel", 95)
+        val savedTime = sharedPreferences.getLong("stopTime", 0)
         // Log.d is used for debugging purposes
         Log.d("MainActivity", "$savedNumber")
 
@@ -194,6 +239,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         hungerLevel = savedHunger
         moodLevel = savedMood
         energyLevel = savedEnergy
+        lastTime = savedTime
     }
 
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
@@ -280,8 +326,8 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
     private fun tweakBars() {
         loadData()
-
-        findViewById<ProgressBar>(R.id.hungerBar).progress = hungerLevel - deltaTime
+        hungerLevel = hungerLevel - deltaTime
+        findViewById<ProgressBar>(R.id.hungerBar).progress = hungerLevel
         findViewById<ProgressBar>(R.id.energyBar).progress = energyLevel
         findViewById<ProgressBar>(R.id.moodBar).progress = moodLevel
 
