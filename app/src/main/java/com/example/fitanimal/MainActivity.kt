@@ -71,42 +71,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
 
         createNotificationChannel()
-        loadData()
-
-        findViewById<ProgressBar>(R.id.hungerBar).progress = hungerLevel
-        findViewById<ProgressBar>(R.id.energyBar).progress = energyLevel
-        findViewById<ProgressBar>(R.id.moodBar).progress = moodLevel
-
-        findViewById<ProgressBar>(R.id.hungerBar).progressTintList = ColorStateList.valueOf(
-            resources.getColor(R.color.fullBar))
-        findViewById<ProgressBar>(R.id.energyBar).progressTintList = ColorStateList.valueOf(
-            resources.getColor(R.color.fullBar))
-        findViewById<ProgressBar>(R.id.moodBar).progressTintList = ColorStateList.valueOf(
-            resources.getColor(R.color.fullBar))
-        if(hungerLevel < 70) {
-            findViewById<ProgressBar>(R.id.hungerBar).progressTintList = ColorStateList.valueOf(
-                resources.getColor(R.color.mediumBar))
-        }
-        if(energyLevel < 70) {
-            findViewById<ProgressBar>(R.id.energyBar).progressTintList = ColorStateList.valueOf(
-                resources.getColor(R.color.mediumBar))
-        }
-        if(moodLevel < 70) {
-            findViewById<ProgressBar>(R.id.moodBar).progressTintList = ColorStateList.valueOf(
-                resources.getColor(R.color.mediumBar))
-        }
-        if(hungerLevel < 30) {
-            findViewById<ProgressBar>(R.id.hungerBar).progressTintList = ColorStateList.valueOf(
-                resources.getColor(R.color.lowBar))
-        }
-        if(energyLevel < 30) {
-            findViewById<ProgressBar>(R.id.energyBar).progressTintList = ColorStateList.valueOf(
-                resources.getColor(R.color.lowBar))
-        }
-        if(moodLevel < 30) {
-            findViewById<ProgressBar>(R.id.moodBar).progressTintList = ColorStateList.valueOf(
-                resources.getColor(R.color.lowBar))
-        }
+        tweakBars()
     }
 
     override fun onPause() {
@@ -118,8 +83,8 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         } else {
             hungerLevel = 0
         }
-        findViewById<ProgressBar>(R.id.hungerBar).progress = hungerLevel
         saveData()
+        tweakBars()
     }
 
     override fun onResume() {
@@ -299,5 +264,45 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         savedInstanceState.putInt("hungerLevel", hungerLevel)
         savedInstanceState.putInt("energyLevel", energyLevel)
         savedInstanceState.putInt("moodLevel  ", moodLevel)
+    }
+
+    private fun tweakBars() {
+        loadData()
+
+        findViewById<ProgressBar>(R.id.hungerBar).progress = hungerLevel
+        findViewById<ProgressBar>(R.id.energyBar).progress = energyLevel
+        findViewById<ProgressBar>(R.id.moodBar).progress = moodLevel
+
+        findViewById<ProgressBar>(R.id.hungerBar).progressTintList = ColorStateList.valueOf(
+            resources.getColor(R.color.fullBar))
+        findViewById<ProgressBar>(R.id.energyBar).progressTintList = ColorStateList.valueOf(
+            resources.getColor(R.color.fullBar))
+        findViewById<ProgressBar>(R.id.moodBar).progressTintList = ColorStateList.valueOf(
+            resources.getColor(R.color.fullBar))
+        if(hungerLevel < 70) {
+            findViewById<ProgressBar>(R.id.hungerBar).progressTintList = ColorStateList.valueOf(
+                resources.getColor(R.color.mediumBar))
+        }
+        if(energyLevel < 70) {
+            findViewById<ProgressBar>(R.id.energyBar).progressTintList = ColorStateList.valueOf(
+                resources.getColor(R.color.mediumBar))
+        }
+        if(moodLevel < 70) {
+            findViewById<ProgressBar>(R.id.moodBar).progressTintList = ColorStateList.valueOf(
+                resources.getColor(R.color.mediumBar))
+        }
+        if(hungerLevel < 30) {
+            findViewById<ProgressBar>(R.id.hungerBar).progressTintList = ColorStateList.valueOf(
+                resources.getColor(R.color.lowBar))
+        }
+        if(energyLevel < 30) {
+            findViewById<ProgressBar>(R.id.energyBar).progressTintList = ColorStateList.valueOf(
+                resources.getColor(R.color.lowBar))
+        }
+        if(moodLevel < 30) {
+            findViewById<ProgressBar>(R.id.moodBar).progressTintList = ColorStateList.valueOf(
+                resources.getColor(R.color.lowBar))
+        }
+        saveData()
     }
 }
