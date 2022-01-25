@@ -73,6 +73,10 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         createNotificationChannel()
         loadData()
 
+        findViewById<ProgressBar>(R.id.hungerBar).progress = hungerLevel
+        findViewById<ProgressBar>(R.id.energyBar).progress = energyLevel
+        findViewById<ProgressBar>(R.id.moodBar).progress = moodLevel
+
         findViewById<ProgressBar>(R.id.hungerBar).progressTintList = ColorStateList.valueOf(
             resources.getColor(R.color.fullBar))
         findViewById<ProgressBar>(R.id.energyBar).progressTintList = ColorStateList.valueOf(
@@ -109,7 +113,11 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         super.onPause()
         if(sendNotif)
             sendNotification()
-        hungerLevel -= 5
+        if (hungerLevel > 5) {
+            hungerLevel -= 5
+        } else {
+            hungerLevel = 0
+        }
         findViewById<ProgressBar>(R.id.hungerBar).progress = hungerLevel
         saveData()
     }
