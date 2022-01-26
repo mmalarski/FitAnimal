@@ -59,6 +59,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     public var hungerLevel by Delegates.notNull<Int>()
     public var energyLevel by Delegates.notNull<Int>()
     public var moodLevel by Delegates.notNull<Int>()
+    public var coins by Delegates.notNull<Int>()
 
     @SuppressLint("CutPasteId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -71,6 +72,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         val currentTime: Long = Calendar.getInstance().timeInMillis
         lastTime = 0
         loadData()
+        findViewById<TextView>(R.id.coinsTextViewMain).text = coins.toString()
         resetSteps()
         deltaTime = if (lastTime != 0.toLong()) {
             ((currentTime - lastTime) / 10000).toInt()
@@ -157,6 +159,8 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         Log.d("Mainstop", "$lastTime")
         Log.d("Maincurrent", "$currentTime")
         Log.d("MainDelta", "$deltaTime")
+        loadData()
+        findViewById<TextView>(R.id.coinsTextViewMain).text = coins.toString()
         tweakBars()
 
         //findViewById<ProgressBar>(R.id.hungerBar).progress = hungerLevel - deltaTime
@@ -196,12 +200,14 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
             previousTotalSteps = totalSteps
             findViewById<ProgressBar>(R.id.hungerBar).progress = 95
             hungerLevel = 95
+            coins = 500
             // When the user will click long tap on the screen,
             // the steps will be reset to 0
             tvStepsTaken.text = 0.toString()
 
             // This will save the data
             saveData()
+            findViewById<TextView>(R.id.coinsTextViewMain).text = coins.toString()
 
             true
         }
@@ -220,6 +226,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         editor.putInt("hungerLevel", hungerLevel)
         editor.putInt("energyLevel", energyLevel)
         editor.putInt("moodLevel  ", moodLevel)
+        editor.putInt("coins", coins)
         editor.apply()
     }
 
@@ -232,6 +239,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         val savedEnergy = sharedPreferences.getInt("energyLevel", 95)
         val savedMood = sharedPreferences.getInt("moodLevel", 95)
         val savedTime = sharedPreferences.getLong("stopTime", 0)
+        val savedCoins = sharedPreferences.getInt("coins", 500)
         // Log.d is used for debugging purposes
         Log.d("MainActivity", "$savedNumber")
 
@@ -240,6 +248,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         moodLevel = savedMood
         energyLevel = savedEnergy
         lastTime = savedTime
+        coins = savedCoins
     }
 
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {

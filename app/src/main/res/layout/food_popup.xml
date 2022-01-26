@@ -1,40 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#CFC0A0">
 
     <Button
-        android:id="@+id/food1"
-        android:layout_width="match_parent"
+        android:id="@+id/smallFoodText"
+        android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
         android:background="?android:attr/selectableItemBackground"
         android:onClick="openOptions"
-        android:text="food 1"
+        android:text="Small food"
+        android:textAlignment="textEnd"
         android:textColor="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/largeFoodText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/smallFoodImage"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/food2"
-        android:layout_width="match_parent"
+        android:id="@+id/premiumFoodXLText"
+        android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="16dp"
         android:background="?android:attr/selectableItemBackground"
-        android:text="food 2"
+        android:onClick="openOptions"
+        android:text="Premium food XL"
         android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/food1" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/premiumFoodXLImage"
+        app:layout_constraintTop_toBottomOf="@+id/premiumFoodText" />
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/premiumFoodText"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:onClick="openOptions"
+        android:text="Premium food"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/premiumFoodXLText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/premiumFoodImage"
+        app:layout_constraintTop_toBottomOf="@+id/largeFoodText" />
+
+    <Button
+        android:id="@+id/largeFoodText"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:onClick="openOptions"
+        android:text="Large food"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/premiumFoodText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/largeFoodImage"
+        app:layout_constraintTop_toBottomOf="@+id/smallFoodText" />
+
+    <ImageView
+        android:id="@+id/smallFoodImage"
+        android:layout_width="122dp"
+        android:layout_height="131dp"
+        android:onClick="openOptions"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/largeFoodImage"
+        app:layout_constraintEnd_toStartOf="@+id/smallFoodText"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/dogfood2" />
+
+    <ImageView
+        android:id="@+id/premiumFoodImage"
+        android:layout_width="122dp"
+        android:layout_height="131dp"
+        android:onClick="openOptions"
+        app:layout_constraintBottom_toTopOf="@+id/premiumFoodXLImage"
+        app:layout_constraintEnd_toStartOf="@+id/premiumFoodText"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/largeFoodImage"
+        app:srcCompat="@drawable/dogfood4" />
+
+    <ImageView
+        android:id="@+id/premiumFoodXLImage"
+        android:layout_width="122dp"
+        android:layout_height="131dp"
+        android:onClick="openOptions"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/premiumFoodXLText"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/premiumFoodImage"
+        app:srcCompat="@drawable/dogfood5" />
+
+    <ImageView
+        android:id="@+id/largeFoodImage"
+        android:layout_width="122dp"
+        android:layout_height="131dp"
+        android:onClick="openOptions"
+        app:layout_constraintBottom_toTopOf="@+id/premiumFoodImage"
+        app:layout_constraintEnd_toStartOf="@+id/largeFoodText"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/smallFoodImage"
+        app:srcCompat="@drawable/dogfood3" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

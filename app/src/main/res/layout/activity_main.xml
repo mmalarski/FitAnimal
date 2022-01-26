@@ -83,7 +83,7 @@
         app:layout_constraintVertical_bias="0.120000005" />
 
     <TextView
-        android:id="@+id/coins"
+        android:id="@+id/coinsTextViewMain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -142,9 +142,10 @@
         android:layout_width="33dp"
         android:layout_height="34dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
         android:src="@drawable/coins"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/coins"
+        app:layout_constraintEnd_toStartOf="@+id/coinsTextViewMain"
         app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -154,13 +155,10 @@
     <ImageView
         android:layout_width="36dp"
         android:layout_height="46dp"
+        android:layout_marginEnd="16dp"
         android:src="@drawable/paws"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/coins"
-        app:layout_constraintHorizontal_bias="0.8"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.120000005"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintBottom_toBottomOf="@+id/tv_stepsTaken"
+        app:layout_constraintEnd_toStartOf="@+id/tv_stepsTaken"
+        app:layout_constraintTop_toTopOf="@+id/tv_stepsTaken" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
