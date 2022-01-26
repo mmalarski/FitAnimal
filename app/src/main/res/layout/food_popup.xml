@@ -10,106 +10,270 @@
         android:id="@+id/smallFoodText"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="32dp"
         android:background="?android:attr/selectableItemBackground"
-        android:onClick="openOptions"
         android:text="Small food"
         android:textAlignment="textEnd"
         android:textColor="#000000"
-        app:layout_constraintBottom_toTopOf="@+id/largeFoodText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/smallFoodImage"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/smallFoodImage" />
 
     <Button
         android:id="@+id/premiumFoodXLText"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="32dp"
         android:background="?android:attr/selectableItemBackground"
-        android:onClick="openOptions"
         android:text="Premium food XL"
         android:textColor="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/premiumFoodXLImage"
-        app:layout_constraintTop_toBottomOf="@+id/premiumFoodText" />
+        app:layout_constraintTop_toTopOf="@+id/premiumFoodXLImage" />
 
     <Button
         android:id="@+id/premiumFoodText"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="32dp"
         android:background="?android:attr/selectableItemBackground"
-        android:onClick="openOptions"
         android:text="Premium food"
         android:textColor="#000000"
-        app:layout_constraintBottom_toTopOf="@+id/premiumFoodXLText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/premiumFoodImage"
-        app:layout_constraintTop_toBottomOf="@+id/largeFoodText" />
+        app:layout_constraintTop_toTopOf="@+id/premiumFoodImage" />
 
     <Button
         android:id="@+id/largeFoodText"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="32dp"
         android:background="?android:attr/selectableItemBackground"
-        android:onClick="openOptions"
         android:text="Large food"
         android:textColor="#000000"
-        app:layout_constraintBottom_toTopOf="@+id/premiumFoodText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/largeFoodImage"
-        app:layout_constraintTop_toBottomOf="@+id/smallFoodText" />
+        app:layout_constraintTop_toTopOf="@+id/largeFoodImage" />
 
     <ImageView
         android:id="@+id/smallFoodImage"
-        android:layout_width="122dp"
-        android:layout_height="131dp"
-        android:onClick="openOptions"
-        android:visibility="visible"
+        android:layout_width="100dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/dogfood2"
         app:layout_constraintBottom_toTopOf="@+id/largeFoodImage"
-        app:layout_constraintEnd_toStartOf="@+id/smallFoodText"
+        app:layout_constraintEnd_toStartOf="@+id/buySmallFood"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/dogfood2" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buySmallFood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
+        android:onClick="openOptions"
+        android:text="Buy more"
+        app:layout_constraintBottom_toBottomOf="@+id/smallFoodImage"
+        app:layout_constraintEnd_toStartOf="@+id/refillSmallFood"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/smallFoodImage"
+        app:layout_constraintTop_toBottomOf="@+id/smallFoodText"
+        app:layout_constraintVertical_bias="0.473" />
 
     <ImageView
         android:id="@+id/premiumFoodImage"
-        android:layout_width="122dp"
-        android:layout_height="131dp"
-        android:onClick="openOptions"
+        android:layout_width="100dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/dogfood4"
         app:layout_constraintBottom_toTopOf="@+id/premiumFoodXLImage"
-        app:layout_constraintEnd_toStartOf="@+id/premiumFoodText"
+        app:layout_constraintEnd_toStartOf="@+id/buyPremiumFood"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/largeFoodImage"
-        app:srcCompat="@drawable/dogfood4" />
+        app:layout_constraintTop_toBottomOf="@+id/largeFoodImage" />
 
     <ImageView
         android:id="@+id/premiumFoodXLImage"
-        android:layout_width="122dp"
-        android:layout_height="131dp"
-        android:onClick="openOptions"
+        android:layout_width="100dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="32dp"
+        android:src="@drawable/dogfood5"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/premiumFoodXLText"
+        app:layout_constraintEnd_toStartOf="@+id/buyPremiumXLFood"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/premiumFoodImage"
-        app:srcCompat="@drawable/dogfood5" />
+        app:layout_constraintTop_toBottomOf="@+id/premiumFoodImage" />
+
+    <Button
+        android:id="@+id/buyPremiumFood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
+        android:onClick="openOptions"
+        android:text="Buy more"
+        app:layout_constraintBottom_toBottomOf="@+id/premiumFoodImage"
+        app:layout_constraintEnd_toStartOf="@+id/refillPremiumFood"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/premiumFoodImage"
+        app:layout_constraintTop_toBottomOf="@+id/premiumFoodText"
+        app:layout_constraintVertical_bias="0.526" />
+
+    <Button
+        android:id="@+id/buyPremiumXLFood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
+        android:onClick="openOptions"
+        android:text="Buy more"
+        app:layout_constraintBottom_toBottomOf="@+id/premiumFoodXLImage"
+        app:layout_constraintEnd_toStartOf="@+id/refillPremiumXLFood"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/premiumFoodXLImage"
+        app:layout_constraintTop_toBottomOf="@+id/premiumFoodXLText" />
+
+    <Button
+        android:id="@+id/refillSmallFood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
+        android:text="Refill bowl"
+        app:layout_constraintBottom_toBottomOf="@+id/smallFoodImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buySmallFood"
+        app:layout_constraintTop_toBottomOf="@+id/smallFoodText" />
 
     <ImageView
         android:id="@+id/largeFoodImage"
-        android:layout_width="122dp"
-        android:layout_height="131dp"
-        android:onClick="openOptions"
+        android:layout_width="100dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/dogfood3"
         app:layout_constraintBottom_toTopOf="@+id/premiumFoodImage"
-        app:layout_constraintEnd_toStartOf="@+id/largeFoodText"
+        app:layout_constraintEnd_toStartOf="@+id/buyLargeFood"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/smallFoodImage"
-        app:srcCompat="@drawable/dogfood3" />
+        app:layout_constraintTop_toBottomOf="@+id/smallFoodImage" />
+
+    <Button
+        android:id="@+id/buyLargeFood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
+        android:onClick="openOptions"
+        android:text="Buy more"
+        app:layout_constraintBottom_toBottomOf="@+id/largeFoodImage"
+        app:layout_constraintEnd_toStartOf="@+id/refillLargeFood"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/largeFoodImage"
+        app:layout_constraintTop_toBottomOf="@+id/largeFoodText" />
+
+    <Button
+        android:id="@+id/refillLargeFood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
+        android:text="Refill bowl"
+        app:layout_constraintBottom_toBottomOf="@+id/largeFoodImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buyLargeFood"
+        app:layout_constraintTop_toBottomOf="@+id/largeFoodText"
+        app:layout_constraintVertical_bias="0.526" />
+
+    <Button
+        android:id="@+id/refillPremiumFood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
+        android:text="Refill bowl"
+        app:layout_constraintBottom_toBottomOf="@+id/premiumFoodImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buyPremiumFood"
+        app:layout_constraintTop_toBottomOf="@+id/premiumFoodText"
+        app:layout_constraintVertical_bias="0.526" />
+
+    <Button
+        android:id="@+id/refillPremiumXLFood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
+        android:text="Refill bowl"
+        app:layout_constraintBottom_toBottomOf="@+id/premiumFoodXLImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buyPremiumXLFood"
+        app:layout_constraintTop_toBottomOf="@+id/premiumFoodXLText"
+        app:layout_constraintVertical_bias="0.526" />
+
+    <TextView
+        android:id="@+id/quantitySmallFood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3"
+        android:textAlignment="textEnd"
+        android:textColor="#000000"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toBottomOf="@+id/smallFoodImage"
+        app:layout_constraintEnd_toEndOf="@+id/smallFoodImage"
+        app:layout_constraintStart_toStartOf="@+id/smallFoodImage"
+        app:layout_constraintTop_toTopOf="@+id/smallFoodImage" />
+
+    <TextView
+        android:id="@+id/quantityLargeFood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textAlignment="textEnd"
+        android:textColor="#000000"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toBottomOf="@+id/largeFoodImage"
+        app:layout_constraintEnd_toEndOf="@+id/largeFoodImage"
+        app:layout_constraintStart_toStartOf="@+id/largeFoodImage"
+        app:layout_constraintTop_toTopOf="@+id/largeFoodImage" />
+
+    <TextView
+        android:id="@+id/quantityPremiumFood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textAlignment="textEnd"
+        android:textColor="#000000"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toBottomOf="@+id/premiumFoodImage"
+        app:layout_constraintEnd_toEndOf="@+id/premiumFoodImage"
+        app:layout_constraintStart_toStartOf="@+id/premiumFoodImage"
+        app:layout_constraintTop_toTopOf="@+id/premiumFoodImage" />
+
+    <TextView
+        android:id="@+id/quantityPremiumXLFood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textAlignment="textEnd"
+        android:textColor="#000000"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toBottomOf="@+id/premiumFoodXLImage"
+        app:layout_constraintEnd_toEndOf="@+id/premiumFoodXLImage"
+        app:layout_constraintStart_toStartOf="@+id/premiumFoodXLImage"
+        app:layout_constraintTop_toTopOf="@+id/premiumFoodXLImage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

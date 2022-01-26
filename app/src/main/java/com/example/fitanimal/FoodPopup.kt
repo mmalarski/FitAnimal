@@ -24,22 +24,22 @@ class FoodPopup : Activity() {
         val width = dm.widthPixels
         val height = dm.heightPixels
 
-        window.setLayout((width * 0.8).toInt(), (height * 0.6).toInt())
+        window.setLayout((width * 0.9).toInt(), (height * 0.9).toInt())
     }
 
     fun openOptions(view: View) {
         val sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
-        if (view.id == R.id.smallFoodText || view.id == R.id.smallFoodImage) {
+        if (view.id == R.id.buySmallFood) {
             editor.putInt("foodChoice", SMALL_FOOD)
             editor.apply()
-        } else if (view.id == R.id.largeFoodText || view.id == R.id.largeFoodImage) {
+        } else if (view.id == R.id.buyLargeFood) {
             editor.putInt("foodChoice", LARGE_FOOD)
             editor.apply()
-        } else if (view.id == R.id.premiumFoodText || view.id == R.id.premiumFoodImage) {
+        } else if (view.id == R.id.buyPremiumFood) {
             editor.putInt("foodChoice", PREMIUM_FOOD)
             editor.apply()
-        } else if (view.id == R.id.largeFoodText || view.id == R.id.largeFoodImage) {
+        } else if (view.id == R.id.buyPremiumXLFood) {
             editor.putInt("foodChoice", PREMIUM_FOOD_XL)
             editor.apply()
         } else {

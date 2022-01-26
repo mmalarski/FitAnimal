@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import kotlin.properties.Delegates
 
@@ -26,6 +27,22 @@ class FoodOptionsActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.coinsTextViewFood).setText(foodCoins.toString())
         foodChoice = sharedPreferences.getInt("foodChoice", -1)
         window.setLayout((width * 0.8).toInt(), (height * 0.8).toInt())
+        if (foodChoice == SMALL_FOOD) {
+            findViewById<ImageView>(R.id.foodImage).setImageResource(R.drawable.dogfood2)
+            findViewById<TextView>(R.id.foodPrice).setText("100")
+        }
+        if (foodChoice == LARGE_FOOD) {
+            findViewById<ImageView>(R.id.foodImage).setImageResource(R.drawable.dogfood3)
+            findViewById<TextView>(R.id.foodPrice).setText("200")
+        }
+        if (foodChoice == PREMIUM_FOOD) {
+            findViewById<ImageView>(R.id.foodImage).setImageResource(R.drawable.dogfood4)
+            findViewById<TextView>(R.id.foodPrice).setText("300")
+        }
+        if (foodChoice == PREMIUM_FOOD_XL) {
+            findViewById<ImageView>(R.id.foodImage).setImageResource(R.drawable.dogfood5)
+            findViewById<TextView>(R.id.foodPrice).setText("400")
+        }
     }
 
     fun increase(view: View) {

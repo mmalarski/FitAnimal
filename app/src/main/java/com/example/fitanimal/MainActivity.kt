@@ -207,6 +207,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
             // This will save the data
             saveData()
+            tweakBars()
             findViewById<TextView>(R.id.coinsTextViewMain).text = coins.toString()
 
             true
