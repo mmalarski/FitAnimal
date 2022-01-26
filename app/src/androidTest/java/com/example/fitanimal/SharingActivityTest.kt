@@ -19,5 +19,4 @@ class SharingActivityTest {
         assertEquals(Lifecycle.State.RESUMED, scenario.state)
     }
 
-    //TODO(test for onRequestPermissionsResult with toast matcher)
 }

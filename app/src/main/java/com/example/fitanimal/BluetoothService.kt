@@ -240,7 +240,7 @@ open class BluetoothService(activity: FragmentActivity, mHandler: Handler) {
 
 
 
-    private inner class AcceptThread(secure: Boolean) : Thread() {
+    inner class AcceptThread(secure: Boolean) : Thread() {
         // The local server socket
         private val mmServerSocket: BluetoothServerSocket?
         private val mSocketType: String
@@ -325,7 +325,7 @@ open class BluetoothService(activity: FragmentActivity, mHandler: Handler) {
      * with a device. It runs straight through; the connection either
      * succeeds or fails.
      */
-    private inner class ConnectThread(private val mmDevice: BluetoothDevice, secure: Boolean) :
+    inner class ConnectThread(private val mmDevice: BluetoothDevice, secure: Boolean) :
         Thread() {
         private val mmSocket: BluetoothSocket?
         private val mSocketType: String
@@ -398,7 +398,7 @@ open class BluetoothService(activity: FragmentActivity, mHandler: Handler) {
      * This thread runs during a connection with a remote device.
      * It handles all incoming and outgoing transmissions.
      */
-    private inner class ConnectedThread(socket: BluetoothSocket, socketType: String) :
+    inner class ConnectedThread(socket: BluetoothSocket, socketType: String) :
         Thread() {
         private val mmSocket: BluetoothSocket
         private val mmInStream: InputStream?
@@ -469,5 +469,21 @@ open class BluetoothService(activity: FragmentActivity, mHandler: Handler) {
         }
     }
 
+    //getter methods for testing
+    fun getConnectThread(): ConnectThread? {
+        return mConnectThread
+    }
+
+    fun getConnectedThread() : ConnectedThread? {
+        return mConnectedThread
+    }
+
+    fun getSecureAcceptThread() : AcceptThread? {
+        return mSecureAcceptThread
+    }
+
+    fun getInsecureAcceptThread() : AcceptThread? {
+        return mInsecureAcceptThread
+    }
 
 }
