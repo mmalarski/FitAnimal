@@ -106,6 +106,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         }
 
         sendNotif = true
+        loadData()
     }
 
     override fun onSensorChanged(event: SensorEvent?) {
@@ -264,6 +265,19 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         savedInstanceState.putInt("hungerLevel", hungerLevel)
         savedInstanceState.putInt("energyLevel", energyLevel)
         savedInstanceState.putInt("moodLevel  ", moodLevel)
+    }
+
+    private fun alterVitalNumbers(hungerNumber:Int, moodNumber: Int, energyNumber: Int){
+
+        hungerLevel = hungerNumber
+        moodLevel = moodNumber
+        energyLevel = energyNumber
+        val sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+
+        val editor = sharedPreferences.edit()
+        editor.putInt("hungerLevel", hungerLevel)
+        editor.putInt("energyLevel", energyLevel)
+        editor.putInt("moodLevel  ", moodLevel)
     }
 
     private fun tweakBars() {

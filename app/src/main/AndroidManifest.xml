@@ -48,16 +48,15 @@
             android:name=".SettingActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".BluetoothScreen"
             android:exported="false"
-            android:parentActivityName=".SettingActivity"/>
+            android:parentActivityName=".SettingActivity" />
         <activity
             android:name=".DeviceListActivity"
             android:exported="false"
-            android:parentActivityName=".BluetoothScreen"/>
-            android:screenOrientation="portrait"/>
+            android:parentActivityName=".BluetoothScreen" />
         <activity
             android:name=".SharingActivity"
             android:exported="false"
@@ -81,6 +80,10 @@
             android:name=".FoodPopup"
             android:parentActivityName=".MainActivity"
             android:theme="@style/Theme.FitAnimal.Pop" />
+        <activity
+            android:name=".FoodOptionsActivity"
+            android:parentActivityName=".FoodPopup"
+            android:exported="false" />
     </application>
 
 </manifest>
