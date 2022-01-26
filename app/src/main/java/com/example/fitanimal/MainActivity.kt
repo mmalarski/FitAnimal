@@ -89,8 +89,8 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
     override fun onPause() {
         super.onPause()
-//        if(sendNotif)
-//            sendNotification()
+        if(sendNotif)
+            sendNotification()
 //        if (hungerLevel > 5) {
 //            hungerLevel -= 5
 //        } else {
