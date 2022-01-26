@@ -1,4 +1,4 @@
-package android.util;
+package androd.util;
 
 //mocking Log.class
 public class Log {

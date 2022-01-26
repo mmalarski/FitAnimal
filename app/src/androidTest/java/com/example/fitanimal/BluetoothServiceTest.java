@@ -1,20 +1,19 @@
 package com.example.fitanimal;
 
 import android.bluetooth.BluetoothAdapter;
+import android.content.Context;
 import android.os.Handler;
+
 import androidx.fragment.app.FragmentActivity;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import android.content.Context;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.powermock.api.mockito.PowerMockito;
 
-import android.os.Handler;
 
 public class BluetoothServiceTest {
 
@@ -59,6 +58,12 @@ public class BluetoothServiceTest {
         Assert.assertNull(btService.getInsecureAcceptThread());
         Assert.assertEquals(0, btService.getState());
     }
+
+//    @Test
+//    public void writeTest() {
+//        btService.write(any(ByteArray.class));
+//
+//    }
 
     //TODO(mock obtainMessage method in Handler class, probably using PowerMockito)
 //    @Test
