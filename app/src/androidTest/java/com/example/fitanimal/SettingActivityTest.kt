@@ -40,6 +40,12 @@ class SettingActivityTest {
         onView(withId(R.id.scanner_view)).check(matches(isDisplayed()))
     }
 
+    @Test
+    fun goToBluetoothTest() {
+        onView(withId(R.id.button)).perform(click())
+        onView(withId(R.id.button5)).check(matches(isDisplayed()))
+    }
+
     @After
     fun tearDown() {
         mActivity = null
