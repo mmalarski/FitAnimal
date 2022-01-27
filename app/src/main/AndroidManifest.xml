@@ -84,6 +84,7 @@
         <activity
             android:name=".FoodOptionsActivity"
             android:parentActivityName=".FoodPopup"
+            android:theme="@style/Theme.FitAnimal.Pop"
             android:exported="false" />
     </application>
 

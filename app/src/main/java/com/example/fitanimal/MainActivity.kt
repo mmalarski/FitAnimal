@@ -62,6 +62,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     public var energyLevel by Delegates.notNull<Int>()
     public var moodLevel by Delegates.notNull<Int>()
     public var coins by Delegates.notNull<Int>()
+    public var isBowlEmpty by Delegates.notNull<Boolean>()
 
     @SuppressLint("CutPasteId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -230,6 +231,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         editor.putInt("energyLevel", energyLevel)
         editor.putInt("moodLevel  ", moodLevel)
         editor.putInt("coins", coins)
+        editor.putBoolean("isBowlEmpty", isBowlEmpty)
         editor.apply()
     }
 
@@ -243,6 +245,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         val savedMood = sharedPreferences.getInt("moodLevel", 95)
         val savedTime = sharedPreferences.getLong("stopTime", 0)
         val savedCoins = sharedPreferences.getInt("coins", 500)
+        val savedIsBowlEmpty = sharedPreferences.getBoolean("isBowlEmpty", false)
         // Log.d is used for debugging purposes
         Log.d("MainActivity", "$savedNumber")
 
@@ -252,6 +255,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         energyLevel = savedEnergy
         lastTime = savedTime
         coins = savedCoins
+        isBowlEmpty = savedIsBowlEmpty
     }
 
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {

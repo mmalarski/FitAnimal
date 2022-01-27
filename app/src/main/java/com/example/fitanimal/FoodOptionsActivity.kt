@@ -26,7 +26,7 @@ class FoodOptionsActivity : AppCompatActivity() {
         foodCoins = sharedPreferences.getInt("coins", 0)
         findViewById<TextView>(R.id.coinsTextViewFood).setText(foodCoins.toString())
         foodChoice = sharedPreferences.getInt("foodChoice", -1)
-        window.setLayout((width * 0.8).toInt(), (height * 0.8).toInt())
+        window.setLayout((width * 0.9).toInt(), (height * 0.9).toInt())
         if (foodChoice == SMALL_FOOD) {
             findViewById<ImageView>(R.id.foodImage).setImageResource(R.drawable.dogfood2)
             findViewById<TextView>(R.id.foodPrice).setText("100")
