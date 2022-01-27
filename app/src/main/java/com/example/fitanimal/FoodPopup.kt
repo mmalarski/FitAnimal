@@ -43,6 +43,17 @@ class FoodPopup : Activity() {
         window.setLayout((width * 0.9).toInt(), (height * 0.9).toInt())
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        loadData()
+
+        findViewById<TextView>(R.id.quantitySmallFood).text = smallFoodQuantity.toString()
+        findViewById<TextView>(R.id.quantityLargeFood).text = largeFoodQuantity.toString()
+        findViewById<TextView>(R.id.quantityPremiumFood).text = premiumFoodQuantity.toString()
+        findViewById<TextView>(R.id.quantityPremiumXLFood).text = premiumFoodXLQuantity.toString()
+    }
+
     fun openOptions(view: View) {
         val sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
@@ -85,7 +96,7 @@ class FoodPopup : Activity() {
             if (isBowlEmpty) {
                 quantity--
                 isBowlEmpty = true
-                editor.putBoolean("isBowlEmpty", isBowlEmpty)
+                editor.putBoolean("isBowlEmpty", isBowlEmpty).apply()
             } else {
                 Toast.makeText(this, "Bowl is not empty", Toast.LENGTH_LONG).show()
             }
@@ -96,23 +107,19 @@ class FoodPopup : Activity() {
         if (view.id == R.id.refillSmallFood) {
             smallFoodQuantity = quantity
             findViewById<TextView>(R.id.quantitySmallFood).text = smallFoodQuantity.toString()
-            editor.putInt("smallFoodQuantity", smallFoodQuantity)
-            editor.apply()
+            editor.putInt("smallFoodQuantity", smallFoodQuantity).apply()
         } else if (view.id == R.id.refillLargeFood) {
             largeFoodQuantity = quantity
             findViewById<TextView>(R.id.quantityLargeFood).text = largeFoodQuantity.toString()
-            editor.putInt("largeFoodQuantity", largeFoodQuantity)
-            editor.apply()
+            editor.putInt("largeFoodQuantity", largeFoodQuantity).apply()
         } else if (view.id == R.id.refillPremiumFood) {
             premiumFoodQuantity = quantity
             findViewById<TextView>(R.id.quantityPremiumFood).text = premiumFoodQuantity.toString()
-            editor.putInt("premiumFoodQuantity", premiumFoodQuantity)
-            editor.apply()
+            editor.putInt("premiumFoodQuantity", premiumFoodQuantity).apply()
         } else if (view.id == R.id.refillPremiumXLFood) {
             premiumFoodXLQuantity = quantity
             findViewById<TextView>(R.id.quantityPremiumXLFood).text = premiumFoodXLQuantity.toString()
-            editor.putInt("premiumXLFoodQuantity", premiumFoodXLQuantity)
-            editor.apply()
+            editor.putInt("premiumXLFoodQuantity", premiumFoodXLQuantity).apply()
         }
     }
 
@@ -127,7 +134,6 @@ class FoodPopup : Activity() {
         // Log.d is used for debugging purposes
 
         smallFoodQuantity = savedSmallFoodQuantity
-        Log.d("VFAMBIFDOAMBFDIAMODFDAIOB", smallFoodQuantity.toString())
         largeFoodQuantity = savedLargeFoodQuantity
         premiumFoodQuantity = savedPremiumFoodQuantity
         premiumFoodXLQuantity = savedPremiumXLFoodQuantity
