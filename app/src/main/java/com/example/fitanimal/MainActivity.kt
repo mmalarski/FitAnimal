@@ -68,13 +68,13 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        loadData()
         viewPager = findViewById(R.id.viewpager)
         myadapter = SlideAdapter(this)
         viewPager.adapter = myadapter
         viewPager.setCurrentItem(1);
         val currentTime: Long = Calendar.getInstance().timeInMillis
         lastTime = 0
-        loadData()
         findViewById<TextView>(R.id.coinsTextViewMain).text = coins.toString()
         resetSteps()
         deltaTime = if (lastTime != 0.toLong()) {
@@ -141,7 +141,6 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         // So don't forget to add the following permission in AndroidManifest.xml present in manifest folder of the app.
         val stepSensor = sensorManager?.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)
 
-
         if (stepSensor == null) {
             // This will give a toast message to the user if there is no sensor in the device
             Toast.makeText(this, "No sensor detected on this device", Toast.LENGTH_SHORT).show()
@@ -202,6 +201,8 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
             // This will give a toast message if the user want to reset the steps
             Toast.makeText(this, "Long tap to reset steps", Toast.LENGTH_SHORT).show()
         }
+
+        getSharedPreferences("myPrefs", Context.MODE_PRIVATE).edit().putBoolean("isBowlEmpty", true).apply()
 
         tvStepsTaken.setOnLongClickListener {
 

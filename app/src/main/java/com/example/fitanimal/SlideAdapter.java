@@ -51,8 +51,15 @@ public class SlideAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+        boolean isBowlEmpty = context.getSharedPreferences("myPrefs", Context.MODE_PRIVATE).getBoolean("isBowlEmpty", true);
         View view = inflater.inflate(R.layout.slide, container, false);
         ImageView imgslide = view.findViewById(R.id.slideimg);
+        ImageButton bowl = view.findViewById(R.id.food);
+        if (isBowlEmpty) {
+            bowl.setImageResource(R.drawable.bowl_empty);
+        } else {
+            bowl.setImageResource(R.drawable.bowl);
+        }
         imgslide.setImageResource(list_images[position]);
 
         Button resetButton=(Button)view.findViewById(buttons[0]);
