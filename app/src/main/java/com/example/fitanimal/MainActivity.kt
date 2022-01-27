@@ -353,9 +353,9 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
     private fun tweakBars() {
         loadData()
-        hungerLevel = hungerLevel - deltaTime
-        energyLevel = energyLevel - deltaTime
-        moodLevel = moodLevel - deltaTime
+        hungerLevel -= deltaTime
+        energyLevel -= deltaTime
+        moodLevel -= deltaTime
         findViewById<ProgressBar>(R.id.hungerBar).progress = hungerLevel
         findViewById<ProgressBar>(R.id.energyBar).progress = energyLevel
         findViewById<ProgressBar>(R.id.moodBar).progress = moodLevel
