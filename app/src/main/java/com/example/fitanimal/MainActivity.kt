@@ -78,7 +78,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         findViewById<TextView>(R.id.coinsTextViewMain).text = coins.toString()
         resetSteps()
         deltaTime = if (lastTime != 0.toLong()) {
-            ((currentTime - lastTime) / 10000).toInt()
+            ((currentTime - lastTime) / 43200000).toInt()
         } else {
             0
         }
@@ -160,7 +160,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         lastTime = savedTime
         val currentTime: Long = Calendar.getInstance().timeInMillis
         deltaTime = if (lastTime !=0.toLong()) {
-            ((currentTime - lastTime) / 100000).toInt()
+            ((currentTime - lastTime) / 43200000).toInt()
         } else {
             0
         }
@@ -194,6 +194,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         }
     }
 
+    @SuppressLint("ResourceType")
     fun resetSteps() {
         val factory = layoutInflater
         val view: View = factory.inflate(R.layout.slide, null)
@@ -206,12 +207,13 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         tvStepsTaken.setOnLongClickListener {
 
             previousTotalSteps = totalSteps
-            findViewById<ProgressBar>(R.id.hungerBar).progress = 95
-            hungerLevel = 95
-            coins = 500
+            //findViewById<ProgressBar>(R.id.hungerBar).progress = 95
+            //hungerLevel = 95
+            val strings =  tvStepsTaken.text.toString()
+            coins += strings.toInt() / 2
             // When the user will click long tap on the screen,
             // the steps will be reset to 0
-            tvStepsTaken.text = 0.toString()
+            tvStepsTaken.text = (strings.toInt() % 2).toString()
 
             // This will save the data
             saveData()
@@ -350,6 +352,8 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     private fun tweakBars() {
         loadData()
         hungerLevel = hungerLevel - deltaTime
+        energyLevel = energyLevel - deltaTime
+        moodLevel = moodLevel - deltaTime
         findViewById<ProgressBar>(R.id.hungerBar).progress = hungerLevel
         findViewById<ProgressBar>(R.id.energyBar).progress = energyLevel
         findViewById<ProgressBar>(R.id.moodBar).progress = moodLevel
