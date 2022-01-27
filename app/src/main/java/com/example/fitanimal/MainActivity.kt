@@ -26,6 +26,8 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import java.util.*
 import kotlin.properties.Delegates
+import android.app.ActivityManager
+import android.widget.ImageButton
 
 
 const val EXTRA_MESSAGE = "com.example.fitanimal.MESSAGE"
@@ -277,6 +279,28 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         startActivity(intentSettings);
     }
 
+    //sound
+    fun soundOnOff(view: View) {
+        val ib = findViewById<ImageButton>(R.id.sound)
+        if (isMyServiceRunning(SoundService::class.java)) {
+            ib.setImageResource(R.drawable.muted)
+            stopService(Intent(this@MainActivity, SoundService::class.java))
+        } else {
+            ib.setImageResource(R.drawable.playing)
+            startService(Intent(this@MainActivity, SoundService::class.java))
+        }
+    }
+
+    private fun isMyServiceRunning(serviceClass: Class<*>): Boolean {
+        val manager = getSystemService(ACTIVITY_SERVICE) as ActivityManager
+        for (service in manager.getRunningServices(Int.MAX_VALUE)) {
+            if (serviceClass.name == service.service.className) {
+                return true
+            }
+        }
+        return false
+    }
+
     //notifications
     private fun createNotificationChannel() {
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -372,5 +396,10 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
                 resources.getColor(R.color.lowBar))
         }
         saveData()
+    }
+
+    fun PlayBackgroundSound(view: View?) {
+        val intent = Intent(this@MainActivity, SoundService::class.java)
+        startService(intent)
     }
 }

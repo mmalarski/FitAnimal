@@ -64,6 +64,22 @@
         app:srcCompat="@drawable/ic_baseline_settings_24"
         tools:ignore="SpeakableTextPresentCheck" />
 
+    <ImageButton
+        android:id="@+id/sound"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:background="#00FFFFFF"
+        android:onClick="soundOnOff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.45"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/viewpager"
+        app:srcCompat="@drawable/muted"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="SpeakableTextPresentCheck,UsingOnClickInXml" />
+
     <TextView
         android:id="@+id/tv_stepsTaken"
         android:layout_width="wrap_content"
