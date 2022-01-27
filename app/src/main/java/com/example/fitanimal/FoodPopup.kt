@@ -43,6 +43,17 @@ class FoodPopup : Activity() {
         window.setLayout((width * 0.9).toInt(), (height * 0.9).toInt())
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        loadData()
+
+        findViewById<TextView>(R.id.quantitySmallFood).text = smallFoodQuantity.toString()
+        findViewById<TextView>(R.id.quantityLargeFood).text = largeFoodQuantity.toString()
+        findViewById<TextView>(R.id.quantityPremiumFood).text = premiumFoodQuantity.toString()
+        findViewById<TextView>(R.id.quantityPremiumXLFood).text = premiumFoodXLQuantity.toString()
+    }
+
     fun openOptions(view: View) {
         val sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
@@ -127,7 +138,6 @@ class FoodPopup : Activity() {
         // Log.d is used for debugging purposes
 
         smallFoodQuantity = savedSmallFoodQuantity
-        Log.d("VFAMBIFDOAMBFDIAMODFDAIOB", smallFoodQuantity.toString())
         largeFoodQuantity = savedLargeFoodQuantity
         premiumFoodQuantity = savedPremiumFoodQuantity
         premiumFoodXLQuantity = savedPremiumXLFoodQuantity

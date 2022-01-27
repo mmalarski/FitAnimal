@@ -13,6 +13,7 @@ class FoodOptionsActivity : AppCompatActivity() {
     var amount: Int = 1
     var foodCoins by Delegates.notNull<Int>()
     var foodChoice by Delegates.notNull<Int>()
+    var price by Delegates.notNull<Int>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,26 +30,30 @@ class FoodOptionsActivity : AppCompatActivity() {
         window.setLayout((width * 0.9).toInt(), (height * 0.9).toInt())
         if (foodChoice == SMALL_FOOD) {
             findViewById<ImageView>(R.id.foodImage).setImageResource(R.drawable.dogfood2)
-            findViewById<TextView>(R.id.foodPrice).setText("100")
+            price = 100
+            findViewById<TextView>(R.id.foodPrice).setText(price.toString())
         }
         if (foodChoice == LARGE_FOOD) {
             findViewById<ImageView>(R.id.foodImage).setImageResource(R.drawable.dogfood3)
-            findViewById<TextView>(R.id.foodPrice).setText("200")
+            price = 200
+            findViewById<TextView>(R.id.foodPrice).setText(price.toString())
         }
         if (foodChoice == PREMIUM_FOOD) {
             findViewById<ImageView>(R.id.foodImage).setImageResource(R.drawable.dogfood4)
-            findViewById<TextView>(R.id.foodPrice).setText("300")
+            price = 300
+            findViewById<TextView>(R.id.foodPrice).setText(price.toString())
         }
         if (foodChoice == PREMIUM_FOOD_XL) {
             findViewById<ImageView>(R.id.foodImage).setImageResource(R.drawable.dogfood5)
-            findViewById<TextView>(R.id.foodPrice).setText("400")
+            price = 400
+            findViewById<TextView>(R.id.foodPrice).setText(price.toString())
         }
     }
 
     fun increase(view: View) {
         amount++
         findViewById<TextView>(R.id.amountTextView).setText("Amount: $amount")
-        findViewById<TextView>(R.id.foodPrice).setText("${amount * 100}")
+        findViewById<TextView>(R.id.foodPrice).setText("${amount * price}")
     }
 
     fun decrease(view: View) {
@@ -57,7 +62,7 @@ class FoodOptionsActivity : AppCompatActivity() {
             amount = 1
         }
         findViewById<TextView>(R.id.amountTextView).setText("Amount: $amount")
-        findViewById<TextView>(R.id.foodPrice).setText("${amount * 100}")
+        findViewById<TextView>(R.id.foodPrice).setText("${amount * price}")
     }
 
     fun buy(view: View){
@@ -65,6 +70,27 @@ class FoodOptionsActivity : AppCompatActivity() {
             val sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
             val editor = sharedPreferences.edit()
             foodCoins -= (findViewById<TextView>(R.id.foodPrice).text).toString().toInt()
+
+            if (foodChoice == SMALL_FOOD) {
+                var quantity = sharedPreferences.getInt("smallFoodQuantity", -1)
+                quantity += amount
+                editor.putInt("smallFoodQuantity", quantity)
+            }
+            if (foodChoice == LARGE_FOOD) {
+                var quantity = sharedPreferences.getInt("largeFoodQuantity", -1)
+                quantity += amount
+                editor.putInt("largeFoodQuantity", quantity)
+            }
+            if (foodChoice == PREMIUM_FOOD) {
+                var quantity = sharedPreferences.getInt("premiumFoodQuantity", -1)
+                quantity += amount
+                editor.putInt("premiumFoodQuantity", quantity)
+            }
+            if (foodChoice == PREMIUM_FOOD_XL) {
+                var quantity = sharedPreferences.getInt("premiumXLFoodQuantity", -1)
+                quantity += amount
+                editor.putInt("premiumXLFoodQuantity", quantity)
+            }
             editor.putInt("coins", foodCoins)
             editor.apply()
             findViewById<TextView>(R.id.coinsTextViewFood).setText(foodCoins.toString())

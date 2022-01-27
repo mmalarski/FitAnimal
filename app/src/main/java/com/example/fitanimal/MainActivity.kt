@@ -208,7 +208,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
             previousTotalSteps = totalSteps
             findViewById<ProgressBar>(R.id.hungerBar).progress = 95
             hungerLevel = 95
-            coins = 500
+            coins = 15000
             // When the user will click long tap on the screen,
             // the steps will be reset to 0
             tvStepsTaken.text = 0.toString()
