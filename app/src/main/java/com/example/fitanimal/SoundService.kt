@@ -27,11 +27,6 @@ class SoundService : Service() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         mediaPlayer!!.start()
-        Toast.makeText(
-            applicationContext,
-            "Playing Bohemian Rashpody in the Background",
-            Toast.LENGTH_SHORT
-        ).show()
         return startId
     }
 

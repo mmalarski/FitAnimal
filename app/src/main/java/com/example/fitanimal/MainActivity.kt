@@ -279,27 +279,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         startActivity(intentSettings);
     }
 
-    //sound
-    fun soundOnOff(view: View) {
-        val ib = findViewById<ImageButton>(R.id.sound)
-        if (isMyServiceRunning(SoundService::class.java)) {
-            ib.setImageResource(R.drawable.muted)
-            stopService(Intent(this@MainActivity, SoundService::class.java))
-        } else {
-            ib.setImageResource(R.drawable.playing)
-            startService(Intent(this@MainActivity, SoundService::class.java))
-        }
-    }
 
-    private fun isMyServiceRunning(serviceClass: Class<*>): Boolean {
-        val manager = getSystemService(ACTIVITY_SERVICE) as ActivityManager
-        for (service in manager.getRunningServices(Int.MAX_VALUE)) {
-            if (serviceClass.name == service.service.className) {
-                return true
-            }
-        }
-        return false
-    }
 
     //notifications
     private fun createNotificationChannel() {
