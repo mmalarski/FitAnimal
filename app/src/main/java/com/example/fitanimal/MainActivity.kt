@@ -127,6 +127,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         editor.apply()
         Log.d("MainStop", "$currTime")
 
+        //sound stops
         if (isMyServiceRunning(SoundService::class.java)) {
             stopService(Intent(this@MainActivity, SoundService::class.java))}
     }
