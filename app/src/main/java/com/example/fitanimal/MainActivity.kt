@@ -113,6 +113,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         val editor = sharedPreferences.edit()
         editor.putLong("stopTime", currTime)
         editor.apply()
+
     }
 
     override fun onStop() {
@@ -124,6 +125,9 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         editor.putLong("stopTime", currTime)
         editor.apply()
         Log.d("MainStop", "$currTime")
+
+        if (isMyServiceRunning(SoundService::class.java)) {
+            stopService(Intent(this@MainActivity, SoundService::class.java))}
     }
 
     override fun onResume() {
@@ -378,8 +382,15 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         saveData()
     }
 
-    fun PlayBackgroundSound(view: View?) {
-        val intent = Intent(this@MainActivity, SoundService::class.java)
-        startService(intent)
+
+
+    public infix fun isMyServiceRunning(serviceClass: Class<*>): Boolean {
+        val manager = getSystemService(ACTIVITY_SERVICE) as ActivityManager
+        for (service in manager.getRunningServices(Int.MAX_VALUE)) {
+            if (serviceClass.name == service.service.className) {
+                return true
+            }
+        }
+        return false
     }
 }
