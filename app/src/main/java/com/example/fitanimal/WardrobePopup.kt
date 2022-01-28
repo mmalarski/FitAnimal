@@ -47,7 +47,6 @@ class WardrobePopup : Activity() {
                 sharedPreferences.edit().putInt("coins", coins - 1000).apply()
                 sharedPreferences.edit().putInt("activeBowl", RED_BALL).apply()
             } else { Toast.makeText(this, "Not enough money", Toast.LENGTH_SHORT).show() }
-            it.visibility = View.GONE
             true
         }
         findViewById<ImageView>(R.id.padlock3).setOnLongClickListener {
@@ -56,7 +55,6 @@ class WardrobePopup : Activity() {
                 sharedPreferences.edit().putInt("coins", coins - 1000).apply()
                 sharedPreferences.edit().putInt("activeBed", BLUE_BED).apply()
             } else { Toast.makeText(this, "Not enough money", Toast.LENGTH_SHORT).show() }
-            it.visibility = View.GONE
             true
         }
         findViewById<ImageView>(R.id.padlock4).setOnLongClickListener {
@@ -65,7 +63,6 @@ class WardrobePopup : Activity() {
                 sharedPreferences.edit().putInt("coins", coins - 1000).apply()
                 sharedPreferences.edit().putInt("activeBed", YELLOW_BED).apply()
             } else { Toast.makeText(this, "Not enough money", Toast.LENGTH_SHORT).show() }
-            it.visibility = View.GONE
             true
         }
         findViewById<ImageView>(R.id.padlock5).setOnLongClickListener {
@@ -74,7 +71,6 @@ class WardrobePopup : Activity() {
                 sharedPreferences.edit().putInt("coins", coins - 1000).apply()
                 sharedPreferences.edit().putInt("activeDog", CORGI).apply()
             } else { Toast.makeText(this, "Not enough money", Toast.LENGTH_SHORT).show() }
-            it.visibility = View.GONE
             true
         }
         findViewById<ImageView>(R.id.padlock6).setOnLongClickListener {
@@ -83,7 +79,6 @@ class WardrobePopup : Activity() {
                 sharedPreferences.edit().putInt("coins", coins - 1000).apply()
                 sharedPreferences.edit().putInt("activeDog", OTHER_DOG).apply()
             } else { Toast.makeText(this, "Not enough money", Toast.LENGTH_SHORT).show() }
-            it.visibility = View.GONE
             true
         }
     }

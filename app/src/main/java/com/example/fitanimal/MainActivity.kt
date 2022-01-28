@@ -430,7 +430,9 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         saveData()
     }
 
-
+    fun dismiss(view: View) {
+        view.visibility = View.GONE
+    }
 
     public infix fun isMyServiceRunning(serviceClass: Class<*>): Boolean {
         val manager = getSystemService(ACTIVITY_SERVICE) as ActivityManager
