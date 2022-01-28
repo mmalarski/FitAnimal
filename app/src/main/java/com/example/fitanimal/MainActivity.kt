@@ -28,6 +28,7 @@ import java.util.*
 import kotlin.properties.Delegates
 import android.app.ActivityManager
 import android.widget.ImageButton
+import org.w3c.dom.Text
 
 
 const val EXTRA_MESSAGE = "com.example.fitanimal.MESSAGE"
@@ -63,6 +64,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     public var moodLevel by Delegates.notNull<Int>()
     public var coins by Delegates.notNull<Int>()
     public var isBowlEmpty by Delegates.notNull<Boolean>()
+    public var displayHint by Delegates.notNull<Boolean>()
 
     @SuppressLint("CutPasteId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -88,6 +90,10 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         Log.d("MainDelta", "$deltaTime")
         // Adding a context of SENSOR_SERVICE aas Sensor Manager
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
+
+        if (!displayHint) {
+            findViewById<TextView>(R.id.hint).visibility = View.GONE
+        }
 
         createNotificationChannel()
         loadData()
@@ -258,6 +264,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         val savedTime = sharedPreferences.getLong("stopTime", 0)
         val savedCoins = sharedPreferences.getInt("coins", 500)
         val savedIsBowlEmpty = sharedPreferences.getBoolean("isBowlEmpty", false)
+        val savedDisplayHint = sharedPreferences.getBoolean("displayHint", true)
         // Log.d is used for debugging purposes
         Log.d("MainActivity", "$savedNumber")
 
@@ -268,6 +275,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         lastTime = savedTime
         coins = savedCoins
         isBowlEmpty = savedIsBowlEmpty
+        displayHint = savedDisplayHint
     }
 
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
@@ -431,6 +439,8 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     }
 
     fun dismiss(view: View) {
+        val sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+        sharedPreferences.edit().putBoolean("displayHint", false).apply()
         view.visibility = View.GONE
     }
 
