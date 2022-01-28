@@ -30,7 +30,7 @@ class SettingActivityTest {
 
     @Test
     fun createTest() {
-        val view : View = mActivity!!.findViewById(R.id.button)
+        val view : View = mActivity!!.findViewById(R.id.button4)
         assertNotNull(view)
     }
 
@@ -38,12 +38,6 @@ class SettingActivityTest {
     fun goToSharingTest() {
         onView(withId(R.id.button4)).perform(click())
         onView(withId(R.id.scanner_view)).check(matches(isDisplayed()))
-    }
-
-    @Test
-    fun goToBluetoothTest() {
-        onView(withId(R.id.button)).perform(click())
-        onView(withId(R.id.button5)).check(matches(isDisplayed()))
     }
 
     @After

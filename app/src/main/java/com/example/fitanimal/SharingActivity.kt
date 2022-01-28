@@ -53,10 +53,6 @@ class SharingActivity : AppCompatActivity() {
         coins = sharedPreferences.getInt("coins", 0)
         sharedCoins = sharedPreferences.getInt("sharedCoins", 0)
 
-        //debug
-        val editor = sharedPreferences.edit()
-        editor.putInt("coins", 500)
-        editor.apply()
 
         changeCode(sharedCoins.toString())
 
@@ -114,6 +110,9 @@ class SharingActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        val sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+        sharedCoins = sharedPreferences.getInt("sharedCoins", 0)
+        changeCode(sharedCoins.toString())
         codeScanner.startPreview()
     }
 
@@ -163,6 +162,7 @@ class SharingActivity : AppCompatActivity() {
                 val editor = sharedPreferences.edit()
                 editor.putInt("coins", newAmount)
                 editor.apply()
+                Toast.makeText(this, "Received " + result.contents.toString() + " coins", Toast.LENGTH_SHORT).show()
             } catch (e: Exception) {
                 e.printStackTrace()
             }
