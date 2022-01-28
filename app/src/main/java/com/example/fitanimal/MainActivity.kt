@@ -207,6 +207,10 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         val factory = layoutInflater
         val view: View = factory.inflate(R.layout.slide, null)
         var tvStepsTaken = findViewById<TextView>(R.id.tv_stepsTaken)
+        tvStepsTaken.setOnClickListener {
+            // This will give a toast message if the user want to reset the steps
+            Toast.makeText(this, "Long tap to convert steps into coins", Toast.LENGTH_SHORT).show()
+        }
 
         getSharedPreferences("myPrefs", Context.MODE_PRIVATE).edit().putBoolean("isBowlEmpty", true).apply()
 

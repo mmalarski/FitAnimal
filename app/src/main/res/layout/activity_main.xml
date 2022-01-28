@@ -49,7 +49,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="SpeakableTextPresentCheck" >
+
+    </androidx.viewpager.widget.ViewPager>
 
     <ImageButton
         android:id="@+id/imageButton"
@@ -63,7 +65,6 @@
         app:layout_constraintTop_toTopOf="@+id/viewpager"
         app:srcCompat="@drawable/ic_baseline_settings_24"
         tools:ignore="SpeakableTextPresentCheck" />
-
 
 
     <TextView
@@ -173,5 +174,35 @@
         app:layout_constraintEnd_toEndOf="@+id/tv_stepsTaken"
         app:layout_constraintStart_toStartOf="@+id/tv_stepsTaken"
         app:layout_constraintTop_toBottomOf="@+id/tv_stepsTaken" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="25dp"
+        android:layout_height="133dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="@+id/hungerBar"
+        app:layout_constraintStart_toStartOf="@+id/hungerBar"
+        app:layout_constraintTop_toBottomOf="@+id/hungerBar"
+        app:srcCompat="@drawable/burger" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="25dp"
+        android:layout_height="133dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="@+id/moodBar"
+        app:layout_constraintStart_toStartOf="@+id/moodBar"
+        app:layout_constraintTop_toBottomOf="@+id/moodBar"
+        app:srcCompat="@drawable/mood" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="25dp"
+        android:layout_height="133dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="@+id/energyBar"
+        app:layout_constraintStart_toStartOf="@+id/energyBar"
+        app:layout_constraintTop_toBottomOf="@+id/energyBar"
+        app:srcCompat="@drawable/energy" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

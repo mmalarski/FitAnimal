@@ -7,6 +7,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -59,6 +62,13 @@ public class SlideAdapter extends PagerAdapter {
         } else {
             bowl.setImageResource(R.drawable.bowl);
         }
+        bowl.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                context.getSharedPreferences("myPrefs", Context.MODE_PRIVATE).edit().putInt("hungerLevel", 100).apply();
+                return true;
+            }
+        });
         imgslide.setImageResource(list_images[position]);
 
         Button resetButton=(Button)view.findViewById(buttons[0]);
