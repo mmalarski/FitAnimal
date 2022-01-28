@@ -20,6 +20,7 @@ import com.budiyev.android.codescanner.*
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
 import com.google.zxing.common.BitMatrix
+import com.google.zxing.integration.android.IntentIntegrator
 import com.journeyapps.barcodescanner.BarcodeEncoder
 import java.lang.Exception
 import java.util.*
@@ -38,6 +39,7 @@ class SharingActivity : AppCompatActivity() {
     private lateinit var multiFormatWriter: MultiFormatWriter
     private lateinit var barcodeEncoder: BarcodeEncoder
     private var coins by Delegates.notNull<Int>();
+    private var sharedCoins by Delegates.notNull<Int>();
 
     @SuppressLint("LongLogTag", "HardwareIds")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,11 +51,26 @@ class SharingActivity : AppCompatActivity() {
 
         val sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
         coins = sharedPreferences.getInt("coins", 0)
+        sharedCoins = sharedPreferences.getInt("sharedCoins", 0)
 
+        //debug
+        val editor = sharedPreferences.edit()
+        editor.putInt("coins", 500)
+        editor.apply()
+
+        changeCode(sharedCoins.toString())
+
+        setupPermission()
+        codeScanner()
+    }
+
+    //onResume??
+
+    fun changeCode(string : String) {
         val multiFormatWriter = MultiFormatWriter()
         try {
             val bitMatrix = multiFormatWriter.encode(
-                "ja wale",
+                string,
                 BarcodeFormat.QR_CODE,
                 500,
                 500
@@ -64,8 +81,6 @@ class SharingActivity : AppCompatActivity() {
         } catch (e: Exception) {
             e.printStackTrace()
         }
-        setupPermission()
-        codeScanner()
     }
 
     private fun codeScanner() {
@@ -81,8 +96,7 @@ class SharingActivity : AppCompatActivity() {
 
             decodeCallback = DecodeCallback {
                 runOnUiThread {
-//                    textView.text = it.text
-//                    bluetooth.connectDevice(it.text, true)
+
                 }
             }
 
@@ -134,6 +148,23 @@ class SharingActivity : AppCompatActivity() {
                 } else {
                     //successful
                 }
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        var result = IntentIntegrator.parseActivityResult(resultCode, data)
+        if (result != null) {
+            try {
+                val sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+                coins = sharedPreferences.getInt("coins", 0)
+                var newAmount : Int = result.contents.toInt() + coins
+                val editor = sharedPreferences.edit()
+                editor.putInt("coins", newAmount)
+                editor.apply()
+            } catch (e: Exception) {
+                e.printStackTrace()
             }
         }
     }
