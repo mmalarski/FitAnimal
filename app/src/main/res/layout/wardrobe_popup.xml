@@ -158,8 +158,8 @@
 
     <ImageView
         android:id="@+id/padlock"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="101dp"
+        android:layout_height="104dp"
         android:onClick="displayHint"
         android:src="@android:drawable/ic_lock_lock"
         app:layout_constraintBottom_toBottomOf="@+id/imageView16"
@@ -169,8 +169,8 @@
 
     <ImageView
         android:id="@+id/padlock2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="101dp"
+        android:layout_height="104dp"
         android:onClick="displayHint"
         android:src="@android:drawable/ic_lock_lock"
         app:layout_constraintBottom_toBottomOf="@+id/imageView17"
@@ -180,8 +180,8 @@
 
     <ImageView
         android:id="@+id/padlock3"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="136dp"
+        android:layout_height="179dp"
         android:onClick="displayHint"
         android:src="@android:drawable/ic_lock_lock"
         app:layout_constraintBottom_toBottomOf="@+id/imageView19"
@@ -191,8 +191,8 @@
 
     <ImageView
         android:id="@+id/padlock4"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="136dp"
+        android:layout_height="179dp"
         android:onClick="displayHint"
         android:src="@android:drawable/ic_lock_lock"
         app:layout_constraintBottom_toBottomOf="@+id/imageView19"
@@ -202,8 +202,8 @@
 
     <ImageView
         android:id="@+id/padlock5"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="130dp"
+        android:layout_height="219dp"
         android:onClick="displayHint"
         android:src="@android:drawable/ic_lock_lock"
         app:layout_constraintBottom_toBottomOf="@+id/imageView22"
@@ -213,8 +213,8 @@
 
     <ImageView
         android:id="@+id/padlock6"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="130dp"
+        android:layout_height="219dp"
         android:onClick="displayHint"
         android:src="@android:drawable/ic_lock_lock"
         app:layout_constraintBottom_toBottomOf="@+id/imageView23"

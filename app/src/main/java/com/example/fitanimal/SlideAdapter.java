@@ -7,8 +7,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -55,6 +53,7 @@ public class SlideAdapter extends PagerAdapter {
         View view = inflater.inflate(R.layout.slide, container, false);
         ImageView imgslide = view.findViewById(R.id.slideimg);
         ImageButton bowl = view.findViewById(R.id.food);
+
         if (isBowlEmpty) {
             bowl.setImageResource(R.drawable.bowl_empty);
         } else {
@@ -69,12 +68,18 @@ public class SlideAdapter extends PagerAdapter {
         ImageButton resetImageButton4=(ImageButton)view.findViewById(buttons[4]);
 
         if(position == 0) {
+
             resetButton.setVisibility(View.VISIBLE);
             resetImageButton.setVisibility(View.INVISIBLE);
             resetImageButton2.setVisibility(View.INVISIBLE);
             resetImageButton4.setVisibility(View.INVISIBLE);
             resetImageButton3.setVisibility(View.INVISIBLE);
         } else {
+
+            resetImageButton4.setImageResource(context.getSharedPreferences("myPrefs", Context.MODE_PRIVATE).getInt("activeDog", R.drawable.bulldog));
+            resetImageButton2.setImageResource(context.getSharedPreferences("myPrefs", Context.MODE_PRIVATE).getInt("activeBed", R.drawable.bed2));
+            resetImageButton3.setImageResource(context.getSharedPreferences("myPrefs", Context.MODE_PRIVATE).getInt("activeBowl", R.drawable.ball2));
+
             resetButton.setVisibility(View.INVISIBLE);
             resetImageButton.setVisibility(View.VISIBLE);
             resetImageButton2.setVisibility(View.VISIBLE);
@@ -95,6 +100,11 @@ public class SlideAdapter extends PagerAdapter {
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
         container.removeView((ConstraintLayout) object);
+    }
+
+    public void refresh()
+    {
+        notifyDataSetChanged();
     }
 
 }
