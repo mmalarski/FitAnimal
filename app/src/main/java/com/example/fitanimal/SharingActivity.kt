@@ -2,11 +2,14 @@ package com.example.fitanimal
 
 import android.annotation.SuppressLint
 import android.bluetooth.BluetoothAdapter
+import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -20,6 +23,7 @@ import com.google.zxing.common.BitMatrix
 import com.journeyapps.barcodescanner.BarcodeEncoder
 import java.lang.Exception
 import java.util.*
+import kotlin.properties.Delegates
 
 private const val CAMERA_REQUEST_CODE = 101
 
@@ -33,6 +37,7 @@ class SharingActivity : AppCompatActivity() {
     private lateinit var imageView: ImageView
     private lateinit var multiFormatWriter: MultiFormatWriter
     private lateinit var barcodeEncoder: BarcodeEncoder
+    private var coins by Delegates.notNull<Int>();
 
     @SuppressLint("LongLogTag", "HardwareIds")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +46,9 @@ class SharingActivity : AppCompatActivity() {
         textView = findViewById<TextView>(R.id.textView2)
         scanner_view = findViewById<CodeScannerView>(R.id.scanner_view)
         imageView = findViewById<ImageView>(R.id.imageViewSharing)
+
+        val sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+        coins = sharedPreferences.getInt("coins", 0)
 
         val multiFormatWriter = MultiFormatWriter()
         try {
@@ -128,5 +136,15 @@ class SharingActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    fun shareButton(view : View) {
+        if(coins > 0) {
+            val intentShare = Intent(this, MoneyShareActivity::class.java)
+            startActivity(intentShare)
+        } else {
+            Toast.makeText(this, "Not enough money to share", Toast.LENGTH_SHORT).show()
+        }
+
     }
 }

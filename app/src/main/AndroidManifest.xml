@@ -86,6 +86,10 @@
             android:parentActivityName=".FoodPopup"
             android:theme="@style/Theme.FitAnimal.Pop"
             android:exported="false" />
+        <activity
+            android:name=".MoneyShareActivity"
+            android:parentActivityName=".FoodPopup"
+            android:theme="@style/Theme.FitAnimal.Pop" />
     </application>
 
 </manifest>
