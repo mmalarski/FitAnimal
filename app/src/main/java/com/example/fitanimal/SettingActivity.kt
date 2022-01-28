@@ -39,11 +39,7 @@ class SettingActivity : AppCompatActivity() {
 //    }
 
 
-    fun goToBluetooth(view: View) {
 
-        val intent = Intent(this, BluetoothScreen::class.java)
-        startActivity(intent);
-    }
 
     fun goToSharing(view: View) {
 
