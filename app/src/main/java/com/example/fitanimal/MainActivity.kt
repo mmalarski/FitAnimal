@@ -90,6 +90,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
 
         createNotificationChannel()
+        loadData()
         tweakBars()
     }
 
@@ -104,6 +105,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 //        }
 //        findViewById<ProgressBar>(R.id.hungerBar).progress = hungerLevel
           saveData()
+            loadData()
           tweakBars()
     }
 
@@ -219,6 +221,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
             // This will save the data
             saveData()
+            loadData()
             tweakBars()
             findViewById<TextView>(R.id.coinsTextViewMain).text = coins.toString()
 
@@ -344,6 +347,40 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         startActivity(intentWardrobe)
     }
 
+    fun goPlay(view: View) {
+
+        if( coins > 0 && moodLevel < 100 )
+        {
+            moodLevel += 10
+            coins -= 1
+            findViewById<TextView>(R.id.coinsTextViewMain).text = coins.toString()
+            tweakBars()
+        }
+            else if (coins == 0) {
+            Toast.makeText(this, "Not enough money!", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(this, "Your pet is already in a good mood", Toast.LENGTH_SHORT).show()
+        }
+
+    }
+
+    fun goToSleep(view: View) {
+        if( coins > 0 && energyLevel < 100 )
+        {
+            energyLevel += 10
+            coins -= 1
+            findViewById<TextView>(R.id.coinsTextViewMain).text = coins.toString()
+            tweakBars()
+        } else if (coins == 0) {
+            Toast.makeText(this, "Not enough money!", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(this, "Energy is full", Toast.LENGTH_SHORT).show()
+        }
+
+    }
+
+
+
     override fun onSaveInstanceState(savedInstanceState: Bundle) {
         super.onSaveInstanceState(savedInstanceState)
         savedInstanceState.putInt("hungerLevel", hungerLevel)
@@ -352,7 +389,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     }
 
     private fun tweakBars() {
-        loadData()
+
         hungerLevel -= deltaTime
         energyLevel -= deltaTime
         moodLevel -= deltaTime
