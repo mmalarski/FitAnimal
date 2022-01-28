@@ -53,16 +53,13 @@ class SharingActivity : AppCompatActivity() {
         coins = sharedPreferences.getInt("coins", 0)
         sharedCoins = sharedPreferences.getInt("sharedCoins", 0)
 
-
         changeCode(sharedCoins.toString())
 
         setupPermission()
         codeScanner()
     }
 
-    //onResume??
-
-    fun changeCode(string : String) {
+    private fun changeCode(string : String) {
         val multiFormatWriter = MultiFormatWriter()
         try {
             val bitMatrix = multiFormatWriter.encode(
@@ -105,6 +102,10 @@ class SharingActivity : AppCompatActivity() {
 
         scanner_view.setOnClickListener {
             codeScanner.startPreview()
+
+            val intentIntegrator = IntentIntegrator(this)
+            intentIntegrator.setDesiredBarcodeFormats(listOf(IntentIntegrator.QR_CODE))
+            intentIntegrator.initiateScan()
         }
     }
 
