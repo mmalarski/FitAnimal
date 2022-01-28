@@ -62,7 +62,9 @@
         android:id="@+id/imageView18"
         android:layout_width="116dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:src="@drawable/bed2"
         app:layout_constraintBottom_toTopOf="@+id/divider2"
@@ -76,6 +78,7 @@
         android:layout_width="116dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:src="@drawable/bed_yellow"
         app:layout_constraintBottom_toTopOf="@+id/divider2"
@@ -89,6 +92,7 @@
         android:layout_width="116dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:src="@drawable/bed_blue"
         app:layout_constraintBottom_toTopOf="@+id/divider2"
@@ -113,6 +117,7 @@
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:adjustViewBounds="true"
         android:src="@drawable/bulldog"
@@ -127,6 +132,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:adjustViewBounds="true"
         android:src="@drawable/corgi"
@@ -149,4 +155,70 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/imageView22"
         app:layout_constraintTop_toBottomOf="@+id/divider2" />
+
+    <ImageView
+        android:id="@+id/padlock"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:onClick="displayHint"
+        android:src="@android:drawable/ic_lock_lock"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView16"
+        app:layout_constraintEnd_toEndOf="@+id/imageView16"
+        app:layout_constraintStart_toStartOf="@+id/imageView16"
+        app:layout_constraintTop_toTopOf="@+id/imageView16" />
+
+    <ImageView
+        android:id="@+id/padlock2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:onClick="displayHint"
+        android:src="@android:drawable/ic_lock_lock"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView17"
+        app:layout_constraintEnd_toEndOf="@+id/imageView17"
+        app:layout_constraintStart_toStartOf="@+id/imageView17"
+        app:layout_constraintTop_toTopOf="@+id/imageView17" />
+
+    <ImageView
+        android:id="@+id/padlock3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:onClick="displayHint"
+        android:src="@android:drawable/ic_lock_lock"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView19"
+        app:layout_constraintEnd_toEndOf="@+id/imageView19"
+        app:layout_constraintStart_toStartOf="@+id/imageView19"
+        app:layout_constraintTop_toTopOf="@+id/imageView19" />
+
+    <ImageView
+        android:id="@+id/padlock4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:onClick="displayHint"
+        android:src="@android:drawable/ic_lock_lock"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView19"
+        app:layout_constraintEnd_toEndOf="@+id/imageView20"
+        app:layout_constraintStart_toStartOf="@+id/imageView20"
+        app:layout_constraintTop_toTopOf="@+id/imageView20" />
+
+    <ImageView
+        android:id="@+id/padlock5"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:onClick="displayHint"
+        android:src="@android:drawable/ic_lock_lock"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView22"
+        app:layout_constraintEnd_toEndOf="@+id/imageView22"
+        app:layout_constraintStart_toStartOf="@+id/imageView22"
+        app:layout_constraintTop_toTopOf="@+id/imageView22" />
+
+    <ImageView
+        android:id="@+id/padlock6"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:onClick="displayHint"
+        android:src="@android:drawable/ic_lock_lock"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView23"
+        app:layout_constraintEnd_toEndOf="@+id/imageView23"
+        app:layout_constraintStart_toStartOf="@+id/imageView23"
+        app:layout_constraintTop_toTopOf="@+id/imageView23" />
 </androidx.constraintlayout.widget.ConstraintLayout>
