@@ -10,7 +10,9 @@
         android:id="@+id/slideimg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="fitXY" />
+        android:scaleType="fitXY"
+        tools:layout_editor_absoluteX="-28dp"
+        tools:layout_editor_absoluteY="0dp" />
 
     <Button
         android:id="@+id/wardrobe"
@@ -27,44 +29,66 @@
 
     <ImageButton
         android:id="@+id/food"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_width="101dp"
+        android:layout_height="62dp"
         android:background="@android:color/transparent"
         android:onClick="openFoodBowl"
+        android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.051"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.936"
+        app:layout_constraintVertical_bias="0.914"
         app:srcCompat="@drawable/bowl"
         tools:ignore="UsingOnClickInXml" />
 
     <ImageButton
         android:id="@+id/bed"
-        android:layout_width="330dp"
-        android:layout_height="157dp"
-        android:layout_marginStart="16dp"
+        android:layout_width="262dp"
+        android:layout_height="135dp"
         android:background="@android:color/transparent"
         android:onClick="goToSleep"
+        android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.764"
+        app:layout_constraintVertical_bias="0.731"
         app:srcCompat="@drawable/bed2"
         tools:ignore="UsingOnClickInXml" />
 
     <ImageButton
         android:id="@+id/toy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="172dp"
+        android:layout_width="59dp"
+        android:layout_height="67dp"
         android:background="@android:color/transparent"
         android:onClick="goPlay"
+        android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.321"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/ball2"
+        tools:ignore="UsingOnClickInXml" />
+
+    <ImageButton
+        android:id="@+id/animal"
+        android:layout_width="232dp"
+        android:layout_height="237dp"
+
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.96"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.967"
+        app:srcCompat="@drawable/bulldog"
         tools:ignore="UsingOnClickInXml" />
 
 

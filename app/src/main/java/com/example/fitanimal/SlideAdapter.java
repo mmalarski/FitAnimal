@@ -25,7 +25,7 @@ public class SlideAdapter extends PagerAdapter {
     };
 
     public int[]  buttons={
-           R.id.wardrobe, R.id.food, R.id.bed, R.id.toy
+           R.id.wardrobe, R.id.food, R.id.bed, R.id.toy, R.id.animal
     };
 
     public boolean[]  flags={
@@ -66,16 +66,19 @@ public class SlideAdapter extends PagerAdapter {
         ImageButton resetImageButton=(ImageButton)view.findViewById(buttons[1]);
         ImageButton resetImageButton2=(ImageButton)view.findViewById(buttons[2]);
         ImageButton resetImageButton3=(ImageButton)view.findViewById(buttons[3]);
+        ImageButton resetImageButton4=(ImageButton)view.findViewById(buttons[4]);
 
         if(position == 0) {
             resetButton.setVisibility(View.VISIBLE);
             resetImageButton.setVisibility(View.INVISIBLE);
             resetImageButton2.setVisibility(View.INVISIBLE);
+            resetImageButton4.setVisibility(View.INVISIBLE);
             resetImageButton3.setVisibility(View.INVISIBLE);
         } else {
             resetButton.setVisibility(View.INVISIBLE);
             resetImageButton.setVisibility(View.VISIBLE);
             resetImageButton2.setVisibility(View.VISIBLE);
+            resetImageButton4.setVisibility(View.VISIBLE);
             resetImageButton3.setVisibility(View.VISIBLE);
 
         }
