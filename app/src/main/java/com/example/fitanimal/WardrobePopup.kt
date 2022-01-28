@@ -34,9 +34,9 @@ class WardrobePopup : Activity() {
         val sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
         val coins = sharedPreferences.getInt("coins", 0)
         findViewById<ImageView>(R.id.padlock).setOnLongClickListener {
-            if (coins > 100) {
+            if (coins > 1000) {
                 it.visibility = View.GONE
-                sharedPreferences.edit().putInt("coins", coins - 100).apply()
+                sharedPreferences.edit().putInt("coins", coins - 1000).apply()
                 sharedPreferences.edit().putInt("activeBowl", GREEN_BALL).apply()
             } else { Toast.makeText(this, "Not enough money", Toast.LENGTH_SHORT).show() }
             true
