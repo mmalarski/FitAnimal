@@ -55,6 +55,7 @@ public class SlideAdapter extends PagerAdapter {
         View view = inflater.inflate(R.layout.slide, container, false);
         ImageView imgslide = view.findViewById(R.id.slideimg);
         ImageButton bowl = view.findViewById(R.id.food);
+
         if (isBowlEmpty) {
             bowl.setImageResource(R.drawable.bowl_empty);
         } else {
@@ -75,6 +76,10 @@ public class SlideAdapter extends PagerAdapter {
             resetImageButton4.setVisibility(View.INVISIBLE);
             resetImageButton3.setVisibility(View.INVISIBLE);
         } else {
+
+            resetImageButton4.setImageResource(context.getSharedPreferences("myPrefs", Context.MODE_PRIVATE).getInt("activeDog", R.drawable.bulldog));
+            resetImageButton3.setImageResource(context.getSharedPreferences("myPrefs", Context.MODE_PRIVATE).getInt("activeBed", R.drawable.ball2));
+            resetImageButton2.setImageResource(context.getSharedPreferences("myPrefs", Context.MODE_PRIVATE).getInt("activeBowl", R.drawable.bed2));
             resetButton.setVisibility(View.INVISIBLE);
             resetImageButton.setVisibility(View.VISIBLE);
             resetImageButton2.setVisibility(View.VISIBLE);

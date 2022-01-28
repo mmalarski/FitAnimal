@@ -8,17 +8,17 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
 
-var BLUE_BALL = 0
-var GREEN_BALL = 1
-var RED_BALL = 2
+var BLUE_BALL = R.drawable.ball2
+var GREEN_BALL = R.drawable.ball_green
+var RED_BALL = R.drawable.ball_red
 
-var RED_BED = 0
-var BLUE_BED = 1
-var YELLOW_BED = 2
+var RED_BED = R.drawable.bed2
+var BLUE_BED = R.drawable.bed_blue
+var YELLOW_BED = R.drawable.bed_yellow
 
-var BULLDOG = 0
-var CORGI = 1
-var OTHER_DOG = 2
+var BULLDOG = R.drawable.bulldog
+var CORGI = R.drawable.corgi
+var OTHER_DOG = R.drawable.dog_1
 
 class WardrobePopup : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,9 +34,9 @@ class WardrobePopup : Activity() {
         val sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
         val coins = sharedPreferences.getInt("coins", 0)
         findViewById<ImageView>(R.id.padlock).setOnLongClickListener {
-            if (coins > 1000) {
+            if (coins > 100) {
                 it.visibility = View.GONE
-                sharedPreferences.edit().putInt("coins", coins - 1000).apply()
+                sharedPreferences.edit().putInt("coins", coins - 100).apply()
                 sharedPreferences.edit().putInt("activeBowl", GREEN_BALL).apply()
             } else { Toast.makeText(this, "Not enough money", Toast.LENGTH_SHORT).show() }
             true
